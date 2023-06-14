@@ -1,35 +1,58 @@
 import React from "react";
 import {StyleSheet, View} from 'react-native';
 import {Navbar} from "./src/Navbar";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {FirstScreen} from "./src/FirstScreen";
-import {ScreenSecond} from "./src/ScreenSecond";
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
+import {Home} from "./src/pages/Home";
+import {Carrier} from "./src/pages/Carrier";
+import {Dispatcher} from "./src/pages/Dispatcher";
+import {Trader} from "./src/pages/Trader";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {RootReducer} from "./src/utils/reducer/reducer";
+
+const store = createStore(RootReducer);
 
 export default function App() {
     const Stack = createNativeStackNavigator();
 
     return (
-        <View style={styles.container}>
-            <Navbar title={"To Do App"}/>
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName="first">
-                    <Stack.Screen
-                        name="first" component={FirstScreen}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name="second"
-                        component={ScreenSecond}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </View>
+        <Provider store={store}>
+            <View style={styles.container}>
+                <Navbar/>
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName="home">
+                        <Stack.Screen
+                            name="home" component={Home}
+                            options={{
+                                headerShown: true
+                            }}
+                        />
+                        <Stack.Screen
+                            name="carrier"
+                            component={Carrier}
+                            options={{
+                                headerShown: true
+                            }}
+                        />
+                        <Stack.Screen
+                            name="trader"
+                            component={Trader}
+                            options={{
+                                headerShown: true
+                            }}
+                        />
+                        <Stack.Screen
+                            name="dispatcher"
+                            component={Dispatcher}
+                            options={{
+                                headerShown: true
+                            }}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </View>
+        </Provider>
     );
 }
 
