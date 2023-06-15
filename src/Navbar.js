@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Text, View, StyleSheet, Button} from "react-native";
 import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
