@@ -25,7 +25,7 @@ export default function App() {
                         <Stack.Screen
                             name="home" component={Home}
                             options={{
-                                headerShown: true
+                                headerShown: false
                             }}
                         />
                         <Stack.Screen
@@ -46,7 +46,7 @@ export default function App() {
                             name="dispatcher"
                             component={Dispatcher}
                             options={{
-                                headerShown: true
+                                headerShown: false
                             }}
                         />
                     </Stack.Navigator>
