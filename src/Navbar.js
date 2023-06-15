@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Text, View, StyleSheet, Button} from "react-native";
-import {Langs} from "./utils/js/main";
+import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
 import {langs} from "./utils/const/const";
 import {changeLang} from "./utils/actions/userAction";
@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     return (
         <View style={styles.navbar}>
-            <Text style={styles.text}>{Langs("logo")}</Text>
+            <Text style={styles.text}>{Translator(lang, "logo")}</Text>
             <Button style={styles.btn} title={lang} onPress={changeLange}/>
         </View>
     )
