@@ -1,12 +1,10 @@
-import {useSelector} from "react-redux";
 import {langs} from "../const/const";
 import {ua} from "../../assets/langs/ua";
 import {ru} from "../../assets/langs/ru";
 
-export const Langs = (val) => {
-    const state = useSelector(state => state.users);
+export const Translator = (lang, val) => {
     let out = "";
-    switch (state.lang) {
+    switch (lang) {
         case langs.UA:
             out = ua[val];
             break
