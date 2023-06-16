@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {useSelector} from "react-redux";
 import {StarRating} from "../components/StarsRating";
-import {Translator} from "../utils/js/main";
+import {detailedResult, totalResult, Translator} from "../utils/js/main";
+import {Header} from "../components/Header";
 
-export const Dispatcher = ({navigation}) => {
+export const Dispatcher = () => {
     const state = useSelector(state => state.users);
     const whoAreLookingFor = state.whoAreLookingFor;
     const lang = state.lang;
@@ -14,57 +15,20 @@ export const Dispatcher = ({navigation}) => {
     const [totalPeople, setTotalPeople] = useState(0);
     const [detailRating, setDetailRating] = useState([]);
 
-    const totalResult = () => {
-        let totalCount = 0;
-        let count = 0;
-        let iter = 0;
-        for (let i in whoAreLookingFor.rating) {
-            iter ++;
-            totalCount = totalCount + Number(whoAreLookingFor.rating[i])
-            count = count + (iter * Number(whoAreLookingFor.rating[i]))
-        }
-        return {count, totalCount}
-    }
-
-    const calculatePercent = (val) => {
-        return (Math.round((Number(val) / totalPeople) * 10000) / 10000);
-    }
-
-    const detailedResult = () => {
-        const ratings = [];
-        let iter = 0;
-        for (let i in whoAreLookingFor.rating) {
-            iter ++;
-            const item = {
-                point: iter,
-                rating: calculatePercent(whoAreLookingFor.rating[i]),
-                label: "DispatcherRating" + iter,
-                people: whoAreLookingFor.rating[i],
-            }
-            ratings.push(item)
-        }
-        setDetailRating(ratings)
-    }
-
     useEffect(() => {
-        const {count, totalCount} = totalResult();
+        const {count, totalCount} = totalResult(whoAreLookingFor.rating);
         setTotalPeople(totalCount)
         setRating(Math.round((count / totalCount / 5) * 10000) / 10000);
         setPoints(Math.round(count / totalCount));
     }, [])
 
     useEffect(() => {
-        if (totalPeople) detailedResult();
+        if (totalPeople) setDetailRating(detailedResult(whoAreLookingFor.rating, totalPeople));
     }, [totalPeople])
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{Translator(lang, "Dispatcher")}</Text>
-            <View style={styles.person}>
-                <Text style={styles.personTitle}>{whoAreLookingFor.phone}</Text>
-                <Text style={styles.personTitle}>{whoAreLookingFor.name}</Text>
-            </View>
-
+            <Header person={whoAreLookingFor}/>
             <StarRating point={points}
                         rating={rating}
                         label={Translator(lang, "TotalRating")}
@@ -89,18 +53,8 @@ const styles = StyleSheet.create({
     container: {
         padding: 15,
     },
-    title: {
-        textAlign: "center",
-        fontSize: 25,
-    },
     moreInfo: {
         padding: 15,
         fontSize: 16,
-    },
-    personTitle: {
-        fontSize: 20,
-    },
-    person: {
-        padding: 15,
     }
 })

@@ -19,3 +19,35 @@ export const Translator = (lang, val) => {
 export const findByPhone = (val) => {
     return data.filter(i => i.phone === val)[0];
 }
+
+export const totalResult = (ratingArr) => {
+    let totalCount = 0;
+    let count = 0;
+    let iter = 0;
+    for (let i in ratingArr) {
+        iter ++;
+        totalCount = totalCount + Number(ratingArr[i])
+        count = count + (iter * Number(ratingArr[i]))
+    }
+    return {count, totalCount}
+}
+
+export const calculatePercent = (val, totalPeople) => {
+    return (Math.round((Number(val) / totalPeople) * 10000) / 10000);
+}
+
+export const detailedResult = (rating, totalPeople) => {
+    const ratings = [];
+    let iter = 0;
+    for (let i in rating) {
+        iter ++;
+        const item = {
+            point: iter,
+            rating: calculatePercent(rating[i], totalPeople),
+            label: "DispatcherRating" + iter,
+            people: rating[i],
+        }
+        ratings.push(item)
+    }
+    return ratings
+}

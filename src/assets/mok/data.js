@@ -22,5 +22,29 @@ export const data = [
             "point4": "3",
             "point5": "5"
         }
-    }
+    },
+    {
+        "type": "carrier",
+        "phone": "0683335503",
+        "name": "Василь Петров",
+        "rating": {
+            "point1": "23",
+            "point2": "15",
+            "point3": "0",
+            "point4": "3",
+            "point5": "5"
+        }
+    },
+    {
+        "type": "carrier",
+        "phone": "0683335504",
+        "name": "Василь Петров",
+        "rating": {
+            "point1": "23",
+            "point2": "15",
+            "point3": "0",
+            "point4": "3",
+            "point5": "5"
+        }
+    },
 ]

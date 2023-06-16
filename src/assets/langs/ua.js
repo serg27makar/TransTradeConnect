@@ -1,6 +1,10 @@
 export const ua = {
     logo: "Trans Trade Connect ua",
 
+    dispatcher: "Диспетчер",
+    carrier: "Перевізник",
+    trader: "Трейдер",
+
     NotPhoneNumber: "Це не схоже на номер телефону",
     TypePhoneNumber: "Введіть номер телефону",
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
@@ -8,10 +12,9 @@ export const ua = {
     EnterSearchNumber: "Введіть тут пошуковий номер",
 
     TotalRating: "Загальний рейтинг довіри",
-    Dispatcher: "Диспетчер",
     MoreDetailedInformation: "Більш детально",
 
-    DispatcherRating1: "інформація взагалі не достовірна",
+    DispatcherRating1: "надає не достовірну інформацію",
     DispatcherRating2: "більшість інформації не відповідає дійсності",
     DispatcherRating3: "інформація потребує додаткової перевірки",
     DispatcherRating4: "більшість інформації правдива",
