@@ -12,7 +12,7 @@ export const Home = ({navigation}) => {
     useEffect(() => {
         if (state.whoAreLookingFor) {
             const patch = state.whoAreLookingFor.type
-            navigation.navigate(patch === "carrier" ? "dispatcher" : patch)
+            navigation.navigate(patch)
         }
     }, [state.whoAreLookingFor])
 

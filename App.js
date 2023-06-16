@@ -30,7 +30,7 @@ export default function App() {
                         />
                         <Stack.Screen
                             name="carrier"
-                            component={Carrier}
+                            component={Dispatcher}
                             options={{
                                 headerShown: true
                             }}
