@@ -32,13 +32,22 @@ export const totalResult = (ratingArr) => {
     return {count, totalCount}
 }
 
+export const traderTotalResult = (calc, info, down) => {
+    const calcCounter = totalResult(calc);
+    const infoCounter = totalResult(info);
+    const downCounter = totalResult(down);
+    const count = calcCounter.count + infoCounter.count + downCounter.count;
+    const totalCount = calcCounter.totalCount + infoCounter.totalCount + downCounter.totalCount;
+    return {count, totalCount}
+}
+
 export const calculatePercent = (val, totalPeople) => {
     return (Math.round((Number(val) / totalPeople) * 10000) / 10000);
 }
 
-export const detailedResult = (rating, totalPeople, type) => {
+export const detailedResult = (rating, totalPeople, type, subType = null) => {
     const ratings = [];
-    const labelName = type === "carrier" ? "CarrierRating" : "DispatcherRating"
+    const labelName = labelNameSwitcher(type, subType)
     let iter = 0;
     for (let i in rating) {
         iter ++;
@@ -51,4 +60,23 @@ export const detailedResult = (rating, totalPeople, type) => {
         ratings.push(item)
     }
     return ratings
+}
+
+export const labelNameSwitcher = (type, subType) => {
+    if (type === "trader") {
+        switch (subType) {
+            case "calc":
+                return "CalcRating";
+            case "info":
+                return "InfoRating";
+            case "down":
+                return "DownRating";
+        }
+    }
+    switch (type) {
+        case "carrier":
+            return "CarrierRating";
+        case "dispatcher":
+            return "DispatcherRating";
+    }
 }

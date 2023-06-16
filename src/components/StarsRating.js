@@ -20,7 +20,7 @@ export const StarRating = ({point, rating, label, people = 0}) => {
         let res = "";
         if (rat < 10) res = rat.toString().substr(0, 4)
         else res = rat.toString().substr(0, 5)
-        return res
+        return res + "%";
     }
 
     useEffect(() => {
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
     },
     label: {
         paddingLeft: 10,
+        fontWeight: "bold"
     },
     people: {
         marginLeft: 10,

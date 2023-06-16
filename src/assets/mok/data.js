@@ -47,4 +47,56 @@ export const data = [
             "point5": "25"
         }
     },
+    {
+        "type": "trader",
+        "phone": "0683335505",
+        "name": "ФОП Пацюк С. О.",
+        "Calculation": {
+            "point1": "0",
+            "point2": "0",
+            "point3": "0",
+            "point4": "0",
+            "point5": "25"
+        },
+        "InformativenessUnloading": {
+            "point1": "0",
+            "point2": "1",
+            "point3": "5",
+            "point4": "3",
+            "point5": "25"
+        },
+        "Downtime": {
+            "point1": "0",
+            "point2": "1",
+            "point3": "10",
+            "point4": "3",
+            "point5": "5"
+        }
+    },
+    {
+        "type": "trader",
+        "phone": "0683335506",
+        "name": "ТОВ Агро груз",
+        "Calculation": {
+            "point1": "0",
+            "point2": "1",
+            "point3": "0",
+            "point4": "3",
+            "point5": "25"
+        },
+        "InformativenessUnloading": {
+            "point1": "0",
+            "point2": "1",
+            "point3": "0",
+            "point4": "3",
+            "point5": "25"
+        },
+        "Downtime": {
+            "point1": "0",
+            "point2": "1",
+            "point3": "0",
+            "point4": "3",
+            "point5": "25"
+        }
+    },
 ]

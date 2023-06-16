@@ -39,7 +39,7 @@ export default function App() {
                             name="trader"
                             component={Trader}
                             options={{
-                                headerShown: true
+                                headerShown: false
                             }}
                         />
                         <Stack.Screen

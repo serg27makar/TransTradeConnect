@@ -23,8 +23,8 @@ export const Dispatcher = () => {
     }, [])
 
     useEffect(() => {
-        if (totalPeople) setDetailRating(detailedResult(whoAreLookingFor.rating, totalPeople, whoAreLookingFor.type));
-    }, [totalPeople])
+        if (totalPeople && whoAreLookingFor) setDetailRating(detailedResult(whoAreLookingFor.rating, totalPeople, whoAreLookingFor.type));
+    }, [totalPeople, whoAreLookingFor])
 
     return (
         <View style={styles.container}>
