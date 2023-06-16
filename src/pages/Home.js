@@ -10,7 +10,7 @@ export const Home = ({navigation}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (state.whoAreLookingFor) {
+        if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
             const patch = state.whoAreLookingFor.type
             navigation.navigate(patch)
         }

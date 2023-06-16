@@ -36,15 +36,16 @@ export const calculatePercent = (val, totalPeople) => {
     return (Math.round((Number(val) / totalPeople) * 10000) / 10000);
 }
 
-export const detailedResult = (rating, totalPeople) => {
+export const detailedResult = (rating, totalPeople, type) => {
     const ratings = [];
+    const labelName = type === "carrier" ? "CarrierRating" : "DispatcherRating"
     let iter = 0;
     for (let i in rating) {
         iter ++;
         const item = {
             point: iter,
             rating: calculatePercent(rating[i], totalPeople),
-            label: "DispatcherRating" + iter,
+            label: labelName + iter,
             people: rating[i],
         }
         ratings.push(item)

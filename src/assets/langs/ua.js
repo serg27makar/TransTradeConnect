@@ -19,4 +19,10 @@ export const ua = {
     DispatcherRating3: "інформація потребує додаткової перевірки",
     DispatcherRating4: "більшість інформації правдива",
     DispatcherRating5: "надає достовірну інформацію",
+
+    CarrierRating1: "зовсім не надійний",
+    CarrierRating2: "часто бувають неприємності",
+    CarrierRating3: "можливі неприємності",
+    CarrierRating4: "майже все нормально",
+    CarrierRating5: "відповідальний і надійний",
 }

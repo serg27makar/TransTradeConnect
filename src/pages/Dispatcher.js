@@ -23,7 +23,7 @@ export const Dispatcher = () => {
     }, [])
 
     useEffect(() => {
-        if (totalPeople) setDetailRating(detailedResult(whoAreLookingFor.rating, totalPeople));
+        if (totalPeople) setDetailRating(detailedResult(whoAreLookingFor.rating, totalPeople, whoAreLookingFor.type));
     }, [totalPeople])
 
     return (

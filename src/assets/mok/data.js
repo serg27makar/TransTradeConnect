@@ -26,25 +26,25 @@ export const data = [
     {
         "type": "carrier",
         "phone": "0683335503",
-        "name": "Василь Петров",
+        "name": "Олександр Петров",
         "rating": {
-            "point1": "23",
-            "point2": "15",
-            "point3": "0",
-            "point4": "3",
-            "point5": "5"
+            "point1": "2",
+            "point2": "5",
+            "point3": "10",
+            "point4": "35",
+            "point5": "50"
         }
     },
     {
         "type": "carrier",
         "phone": "0683335504",
-        "name": "Василь Петров",
+        "name": "Микола Ільїн",
         "rating": {
-            "point1": "23",
-            "point2": "15",
+            "point1": "0",
+            "point2": "1",
             "point3": "0",
             "point4": "3",
-            "point5": "5"
+            "point5": "25"
         }
     },
 ]
