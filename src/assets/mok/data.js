@@ -1,8 +1,8 @@
 export const data = [
     {
         "type": "dispatcher",
-        "phone": "0686337705",
-        "name": "first",
+        "phone": "0683335501",
+        "name": "Ольга Ребрик",
         "rating": {
             "point1": "3",
             "point2": "1",
@@ -13,8 +13,8 @@ export const data = [
     },
     {
         "type": "dispatcher",
-        "phone": "0686337706",
-        "name": "second",
+        "phone": "0683335502",
+        "name": "Василь Петров",
         "rating": {
             "point1": "23",
             "point2": "15",

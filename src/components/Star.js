@@ -5,9 +5,9 @@ import {View} from 'react-native';
 export const Star = ({rating}) => {
     return (
         <View>
-            <Svg height="40" width="40">
+            <Svg height="30" width="30">
                 <Polygon
-                    points="20,9 24,20 34,20 27,27 30,38 20,30 10,38 13,27 6,20 16,20"
+                    points="16,7 19,16 27,16 22,22 24,30 16,24 8,30 10,22 5,16 13,16"
                     fill={rating ? "lime" : "gray"}
                     stroke="purple"
                     strokeWidth="1"

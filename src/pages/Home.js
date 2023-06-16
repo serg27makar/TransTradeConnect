@@ -32,7 +32,7 @@ export const Home = ({navigation}) => {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.label}>{Translator(state.lang, "EnterSearchNumber")}</Text>
             <TextInput
                 style={styles.input}
@@ -55,6 +55,11 @@ export const Home = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
     btn: {
         fontSize: 20,
         padding: 10,
