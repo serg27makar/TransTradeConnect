@@ -10,6 +10,9 @@ import {Trader} from "./src/pages/Trader";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {RootReducer} from "./src/utils/reducer/reducer";
+import {LoginScreen} from "./src/pages/Login";
+import {RegistrationScreen} from "./src/pages/Registration";
+import {patch} from "./src/utils/const/const";
 
 const store = createStore(RootReducer);
 
@@ -21,30 +24,45 @@ export default function App() {
             <View style={styles.container}>
                 <Navbar/>
                 <NavigationContainer>
-                    <Stack.Navigator initialRouteName="home">
+                    <Stack.Navigator initialRouteName={patch.LOGIN}>
                         <Stack.Screen
-                            name="home" component={Home}
+                            name={patch.HOME}
+                            component={Home}
                             options={{
                                 headerShown: false
                             }}
                         />
                         <Stack.Screen
-                            name="carrier"
+                            name={patch.DISPATCHER}
                             component={Dispatcher}
                             options={{
                                 headerShown: false
                             }}
                         />
                         <Stack.Screen
-                            name="trader"
+                            name={patch.TRADER}
                             component={Trader}
                             options={{
                                 headerShown: false
                             }}
                         />
                         <Stack.Screen
-                            name="dispatcher"
+                            name={patch.CARRIER}
                             component={Dispatcher}
+                            options={{
+                                headerShown: false
+                            }}
+                        />
+                        <Stack.Screen
+                            name={patch.LOGIN}
+                            component={LoginScreen}
+                            options={{
+                                headerShown: false
+                            }}
+                        />
+                        <Stack.Screen
+                            name={patch.REGISTRATION}
+                            component={RegistrationScreen}
                             options={{
                                 headerShown: false
                             }}

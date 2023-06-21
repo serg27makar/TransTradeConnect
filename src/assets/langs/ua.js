@@ -5,6 +5,10 @@ export const ua = {
     carrier: "Перевізник",
     trader: "Трейдер",
 
+    Password: "Введіть пароль",
+    Registration: "Реєстрація",
+    Login: "Вхід",
+
     NotPhoneNumber: "Це не схоже на номер телефону",
     TypePhoneNumber: "Введіть номер телефону",
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
