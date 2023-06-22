@@ -2,19 +2,26 @@ import React from 'react';
 import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import { Card } from 'react-native-elements';
 import {Translator} from "../utils/js/main";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {patch} from "../utils/const/const";
-import {postRegister} from "../utils/js/axiosConnect";
+import {postRegister} from "../utils/js/APIService";
+import {setIsLogin} from "../utils/actions/userAction";
 
 export const RegistrationScreen = ({navigation}) => {
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [password, setPassword] = React.useState('');
     const state = useSelector(state => state.users);
+    const dispatch = useDispatch();
 
     const handleRegistration = () => {
         postRegister({
             Phone: phoneNumber,
             Password: password
+        }, res => {
+            if (res) {
+                navigation.navigate(patch.HOME)
+                dispatch(setIsLogin(true));
+            }
         })
     }
 

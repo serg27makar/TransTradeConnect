@@ -1,9 +1,10 @@
 import React from "react";
-import {Text, View, StyleSheet, Button} from "react-native";
-import {Translator} from "./utils/js/main";
+import {Text, View, StyleSheet, Button, TouchableOpacity} from "react-native";
+import {LogOut, Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
 import {langs} from "./utils/const/const";
-import {changeLang} from "./utils/actions/userAction";
+import {changeLang, setIsLogin} from "./utils/actions/userAction";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 export const Navbar = () => {
     const lang = useSelector((state) => state.users.lang);
@@ -14,10 +15,18 @@ export const Navbar = () => {
         dispatch(changeLang(nextLang))
     }
 
+    const logOut = () => {
+        dispatch(setIsLogin(false));
+        LogOut()
+    }
+
     return (
         <View style={styles.navbar}>
             <Text style={styles.text}>{Translator(lang, "logo")}</Text>
             <Button style={styles.btn} title={lang} onPress={changeLange}/>
+            <TouchableOpacity  onPress={logOut}>
+                <Ionicons style={styles.exit} name='exit' size={32} color={"white"} />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -38,5 +47,8 @@ const styles = StyleSheet.create({
     },
     btn: {
         marginLeft: 20,
+    },
+    exit: {
+        paddingLeft: 10,
     }
 })

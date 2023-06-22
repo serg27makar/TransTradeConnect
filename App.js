@@ -1,10 +1,9 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {StyleSheet, View} from 'react-native';
 import {Navbar} from "./src/Navbar";
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from "@react-navigation/native";
 import {Home} from "./src/pages/Home";
-import {Carrier} from "./src/pages/Carrier";
 import {Dispatcher} from "./src/pages/Dispatcher";
 import {Trader} from "./src/pages/Trader";
 import {Provider} from "react-redux";
@@ -13,18 +12,24 @@ import {RootReducer} from "./src/utils/reducer/reducer";
 import {LoginScreen} from "./src/pages/Login";
 import {RegistrationScreen} from "./src/pages/Registration";
 import {patch} from "./src/utils/const/const";
+import {checkLogin} from "./src/utils/js/main";
 
 const store = createStore(RootReducer);
 
 export default function App() {
     const Stack = createNativeStackNavigator();
+    const [isLogin, setIsLogin] = useState(false);
+
+    useEffect(() => {
+        checkLogin().then(res => setIsLogin(res))
+    }, [])
 
     return (
         <Provider store={store}>
             <View style={styles.container}>
                 <Navbar/>
                 <NavigationContainer>
-                    <Stack.Navigator initialRouteName={patch.LOGIN}>
+                    <Stack.Navigator initialRouteName={isLogin ? patch.LOGIN : patch.HOME}>
                         <Stack.Screen
                             name={patch.HOME}
                             component={Home}

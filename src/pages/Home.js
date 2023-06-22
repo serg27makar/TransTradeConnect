@@ -1,13 +1,24 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
-import {findByPhone, Translator} from "../utils/js/main";
+import {checkLogin, findByPhone, Translator} from "../utils/js/main";
 import {setSearchData} from "../utils/actions/userAction";
+import {patch} from "../utils/const/const";
 
 export const Home = ({navigation}) => {
     const [number, onChangeNumber] = useState('');
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+       if (!state.isLogin)  navigation.navigate(patch.LOGIN)
+    },[state.isLogin])
+
+    useEffect(() => {
+        checkLogin().then(res => {
+            if (!res) navigation.navigate(patch.LOGIN)
+        })
+    }, [])
 
     useEffect(() => {
         if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
