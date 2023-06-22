@@ -3,11 +3,15 @@ import axios from 'axios'
 const axiosIns = axios.create({})
 
 const catchError = (error) => {
-    console.log(error)
+    console.log("---", error)
 }
 
+const webServer = "http://localhost:3001";
+const homeWiFiServer = "http://192.168.0.116:3001";
+const workWiFiServer = "http://192.168.0.127:3001";
+
 export default function APIService() {
-    this.APIUrl = process.env.NODE_ENV === "development" ? 'http://192.168.0.116:3001' : '';
+    this.APIUrl = process.env.NODE_ENV === "development" ? workWiFiServer : "";
     this.get = function (path, signal = null) {
         return this.request("GET", path, null, signal)
             .catch(error => catchError(error))
@@ -34,7 +38,6 @@ export default function APIService() {
                 return axiosIns.put(this.APIUrl + path, data);
             case "DELETE":
                 return axiosIns.delete(this.APIUrl + path);
-            // TODO add default with exception
         }
     }
 }

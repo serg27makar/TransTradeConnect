@@ -12,11 +12,10 @@ export const LoginScreen = ({navigation}) => {
     const state = useSelector(state => state.users);
 
     const handleLogin = () => {
-        const res = postLogin({
+        postLogin({
             Phone: phoneNumber,
             Password: password
         })
-        console.log("res", res)
     };
 
     const handleRegistration = () => {
