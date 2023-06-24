@@ -30,7 +30,7 @@ export default function App() {
             <View style={styles.container}>
                 <Navbar/>
                 <NavigationContainer>
-                    <Stack.Navigator initialRouteName={isLogin ? patch.LOGIN : patch.HOME}>
+                    <Stack.Navigator initialRouteName={isLogin ? patch.HOME : patch.LOGIN}>
                         <Stack.Screen
                             name={patch.HOME}
                             component={Home}

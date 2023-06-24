@@ -26,18 +26,21 @@ export const AddUser = ({navigation}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>{Translator(state.lang, "aboutWhomYouWantToShare")}</Text>
-            <Text style={styles.header}>{state.addPhone}</Text>
+            <Text style={styles.headerPhone}>{Translator(state.lang, "byNumber") + ": " + state.addPhone}</Text>
 
-            <DropDownPicker
-                open={open}
-                value={value}
-                items={items}
-                setOpen={setOpen}
-                setValue={setValue}
-                setItems={setItems}
-                placeholder={Translator(state.lang, "selectUserType")}
-                style={styles.dropDown}
-            />
+            {
+                value ? null :
+                    <DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        placeholder={Translator(state.lang, "selectUserType")}
+                        style={styles.dropDown}
+                    />
+            }
 
             {
                 value === userType.DISPATCHER ?
@@ -59,6 +62,11 @@ const styles = StyleSheet.create({
     header: {
         padding: 10,
         fontSize: 16,
+    },
+    headerPhone: {
+        padding: 10,
+        fontSize: 18,
+        alignItems: "center"
     },
     dropDown: {
         zIndex: 10,

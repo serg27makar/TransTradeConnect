@@ -54,5 +54,14 @@ export const ua = {
     DownRating5: "майже немає простоїв",
 
     selectUserType: "Виберіть тип користувача",
-    aboutWhomYouWantToShare: "Про кого ви хочете поділитися"
+    aboutWhomYouWantToShare: "Про кого ви хочете поділитися",
+    byNumber: "За номером",
+    rate: "Оцініть",
+
+    enterNameOrganization: "Введіть ім'я або назву організації",
+    fieldRequired: "Це поле є обов'язковим",
+    ratingRequired: "виберіть найбільш правильну відповідь",
+    save: "Зберегти",
+    somethingWentWrong: "Щось пішло не так, спробуйте будь ласка пізніше",
+    successfullyAdded: "Інформація успішно додана",
 }

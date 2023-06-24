@@ -1,4 +1,4 @@
-import {langs, patch} from "../const/const";
+import {langs, userType} from "../const/const";
 import {ua} from "../../assets/langs/ua";
 import {ru} from "../../assets/langs/ru";
 import {data} from "../../assets/mok/data.js"
@@ -63,8 +63,21 @@ export const detailedResult = (rating, totalPeople, type, subType = null) => {
     return ratings
 }
 
+export const addRating = (type, subType = null) => {
+    const ratings = [];
+    const labelName = labelNameSwitcher(type, subType)
+    for (let i = 1; i <= 5; i++) {
+        const item = {
+            point: i,
+            label: labelName + i,
+        }
+        ratings.push(item)
+    }
+    return ratings;
+}
+
 export const labelNameSwitcher = (type, subType) => {
-    if (type === "trader") {
+    if (type === userType.TRADER) {
         switch (subType) {
             case "calc":
                 return "CalcRating";
@@ -75,9 +88,9 @@ export const labelNameSwitcher = (type, subType) => {
         }
     }
     switch (type) {
-        case "carrier":
+        case userType.CARRIER:
             return "CarrierRating";
-        case "dispatcher":
+        case userType.DISPATCHER:
             return "DispatcherRating";
     }
 }

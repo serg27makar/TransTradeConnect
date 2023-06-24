@@ -5,7 +5,7 @@ import {Translator} from "../utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
 import {patch} from "../utils/const/const";
 import {postRegister} from "../utils/js/APIService";
-import {setIsLogin} from "../utils/actions/userAction";
+import {setIsLogin, setUserId} from "../utils/actions/userAction";
 
 export const RegistrationScreen = ({navigation}) => {
     const [phoneNumber, setPhoneNumber] = React.useState('');
@@ -21,6 +21,7 @@ export const RegistrationScreen = ({navigation}) => {
             if (res) {
                 navigation.navigate(patch.HOME)
                 dispatch(setIsLogin(true));
+                dispatch(setUserId(res));
             }
         })
     }

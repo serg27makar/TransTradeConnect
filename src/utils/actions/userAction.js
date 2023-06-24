@@ -1,4 +1,4 @@
-import {CHANGE_LANG, IS_LOGIN, NAVIGATE, SET_ADD_PHONE, SET_SEARCH_DATA} from "../const/types";
+import {CHANGE_LANG, IS_LOGIN, NAVIGATE, SET_ADD_PHONE, SET_SEARCH_DATA, USER_ID} from "../const/types";
 
 export const changeLang = lang => (
     {
@@ -24,6 +24,13 @@ export const setAddPhone = data => (
 export const setIsLogin = data => (
     {
         type: IS_LOGIN,
+        payload: data,
+    }
+);
+
+export const setUserId = data => (
+    {
+        type: USER_ID,
         payload: data,
     }
 );
