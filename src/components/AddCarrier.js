@@ -2,20 +2,21 @@ import {StyleSheet, Text, View} from "react-native";
 import {Translator} from "../utils/js/main";
 import React from "react";
 import {useSelector} from "react-redux";
+import {userType} from "../utils/const/const";
 
-export const Header = ({person}) => {
+export const AddCarrier = ({navigation}) => {
     const state = useSelector(state => state.users);
 
     return (
         <View>
-            <Text style={styles.title}>{Translator(state.lang, person.type)}</Text>
+            <Text style={styles.title}>{Translator(state.lang, userType.CARRIER)}</Text>
             <View style={styles.person}>
-                <Text style={styles.personTitle}>{person.phone}</Text>
-                <Text style={styles.personTitle}>{person.name}</Text>
+                <Text>AddCarrier</Text>
             </View>
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     title: {

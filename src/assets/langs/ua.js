@@ -13,6 +13,7 @@ export const ua = {
     TypePhoneNumber: "Введіть номер телефону",
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
     CheckOut: "Перевірити",
+    ToAdd: "Додати",
     EnterSearchNumber: "Введіть тут пошуковий номер",
 
     TotalRating: "Загальний рейтинг довіри",
@@ -52,4 +53,6 @@ export const ua = {
     DownRating4: "рідкісні простої",
     DownRating5: "майже немає простоїв",
 
+    selectUserType: "Виберіть тип користувача",
+    aboutWhomYouWantToShare: "Про кого ви хочете поділитися"
 }

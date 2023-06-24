@@ -13,6 +13,7 @@ import {LoginScreen} from "./src/pages/Login";
 import {RegistrationScreen} from "./src/pages/Registration";
 import {patch} from "./src/utils/const/const";
 import {checkLogin} from "./src/utils/js/main";
+import {AddUser} from "./src/pages/AddUser";
 
 const store = createStore(RootReducer);
 
@@ -35,6 +36,14 @@ export default function App() {
                             component={Home}
                             options={{
                                 headerShown: false
+                            }}
+                        />
+                        <Stack.Screen
+                            name={patch.ADD_USER}
+                            component={AddUser}
+                            options={{
+                                headerShown: true,
+                                headerTitle: ""
                             }}
                         />
                         <Stack.Screen

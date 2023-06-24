@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {checkLogin, findByPhone, Translator} from "../utils/js/main";
-import {setSearchData} from "../utils/actions/userAction";
+import {setAddPhone, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
 
 export const Home = ({navigation}) => {
@@ -27,7 +27,20 @@ export const Home = ({navigation}) => {
         }
     }, [state.whoAreLookingFor])
 
-    const mobileValidate = () => {
+    useEffect(() => {
+        if (state.addPhone) navigation.navigate(patch.ADD_USER)
+    }, [state.addPhone])
+
+    const toAdd = () => {
+        dispatch(setAddPhone(""))
+        mobileValidate(false)
+    }
+
+    const checkOut = () => {
+        mobileValidate(true)
+    }
+
+    const mobileValidate = (check) => {
         dispatch(setSearchData(null))
         setTimeout(() => {
             const numLength = number.length;
@@ -35,9 +48,13 @@ export const Home = ({navigation}) => {
             if (reg.test(number) === false || numLength !== 10) {
                 Alert.alert(Translator(state.lang, "NotPhoneNumber"))
             } else {
-                const res = findByPhone(number)
-                if (res) {
-                    dispatch(setSearchData(res))
+                if (check) {
+                    const res = findByPhone(number)
+                    if (res) {
+                        dispatch(setSearchData(res))
+                    }
+                } else {
+                    dispatch(setAddPhone(number))
                 }
             }
         }, 100);
@@ -57,11 +74,20 @@ export const Home = ({navigation}) => {
             />
             <Text style={styles.warning}>{Translator(state.lang, "EnterPhoneWithoutSpaces")}</Text>
 
-            <TouchableOpacity
-                style = {styles.submitButton}
-                onPress = {mobileValidate}>
-                <Text style = {styles.submitButtonText}>{Translator(state.lang, "CheckOut")}</Text>
-            </TouchableOpacity>
+            <View style={styles.btnBlock}>
+                <TouchableOpacity
+                    style = {styles.submitButton}
+                    onPress = {checkOut}>
+                    <Text style = {styles.submitButtonText}>{Translator(state.lang, "CheckOut")}</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style = {styles.submitButton}
+                    onPress = {toAdd}>
+                    <Text style = {styles.submitButtonText}>{Translator(state.lang, "ToAdd")}</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }
@@ -104,5 +130,8 @@ const styles = StyleSheet.create({
     },
     submitButtonText:{
         color: 'white'
+    },
+    btnBlock: {
+        flexDirection: "row"
     }
 })

@@ -1,10 +1,12 @@
-import {CHANGE_LANG, IS_LOGIN, SET_SEARCH_DATA} from "../const/types";
+import {CHANGE_LANG, IS_LOGIN, NAVIGATE, SET_ADD_PHONE, SET_SEARCH_DATA} from "../const/types";
 import {langs} from "../const/const";
 
 const initialState = {
     lang: langs.UA,
     whoAreLookingFor: null,
     isLogin: false,
+    addPhone: "",
+    pathname: "",
 }
 
 export const userReducer = (state = initialState, action) => {
@@ -13,8 +15,12 @@ export const userReducer = (state = initialState, action) => {
             return {...state, lang: action.payload}
         case SET_SEARCH_DATA:
             return {...state, whoAreLookingFor: action.payload}
+        case SET_ADD_PHONE:
+            return {...state, addPhone: action.payload}
         case IS_LOGIN:
             return {...state, isLogin: action.payload}
+        case NAVIGATE:
+            return {...state, pathname: action.payload}
         default:
             return state
     }
