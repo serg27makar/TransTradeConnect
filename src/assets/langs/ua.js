@@ -45,7 +45,7 @@ export const ua = {
     InfoRating2: "майже не давав інформації",
     InfoRating3: "надав мало або неточну інформацію",
     InfoRating4: "надав майже всю інформацію",
-    InfoRating5: "надала абсолютно достовірну інформацію",
+    InfoRating5: "надав абсолютно достовірну інформацію",
 
     DownRating1: "постійний простій",
     DownRating2: "багато простоїв",
@@ -56,7 +56,7 @@ export const ua = {
     selectUserType: "Виберіть тип користувача",
     aboutWhomYouWantToShare: "Про кого ви хочете поділитися",
     byNumber: "За номером",
-    rate: "Оцініть",
+    rate: "виберіть одну з відповідей",
 
     enterNameOrganization: "Введіть ім'я або назву організації",
     fieldRequired: "Це поле є обов'язковим",

@@ -1,11 +1,12 @@
 import {CHANGE_LANG, IS_LOGIN, NAVIGATE, SET_ADD_PHONE, SET_SEARCH_DATA, USER_ID} from "../const/types";
 import {langs} from "../const/const";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialState = {
     lang: langs.UA,
     whoAreLookingFor: null,
     isLogin: false,
-    userID: "",
+    userID: AsyncStorage.getItem("UserId"),
     addPhone: "",
     pathname: "",
 }

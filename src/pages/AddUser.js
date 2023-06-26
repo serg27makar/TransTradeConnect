@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Translator} from "../utils/js/main";
 import {useSelector} from "react-redux";
@@ -24,7 +24,7 @@ export const AddUser = ({navigation}) => {
     }, [])
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Text style={styles.header}>{Translator(state.lang, "aboutWhomYouWantToShare")}</Text>
             <Text style={styles.headerPhone}>{Translator(state.lang, "byNumber") + ": " + state.addPhone}</Text>
 
@@ -51,7 +51,7 @@ export const AddUser = ({navigation}) => {
                     <AddTrader /> :
                     null
             }
-        </View>
+        </ScrollView>
     )
 }
 

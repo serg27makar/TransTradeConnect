@@ -42,7 +42,7 @@ export default function App() {
                             name={patch.ADD_USER}
                             component={AddUser}
                             options={{
-                                headerShown: true,
+                                headerShown: false,
                                 headerTitle: ""
                             }}
                         />

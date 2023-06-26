@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {addRating, Translator} from "../utils/js/main";
 import {useSelector} from "react-redux";
 
-export const InputRating = ({type, subType = null, required = false, result}) => {
+export const InputRating = ({type, subType = null, required = false, title = "rate", result}) => {
     const state = useSelector(state => state.users);
     const [checked, setChecked] = useState('');
     const [rating, setRating] = useState([]);
@@ -19,7 +19,7 @@ export const InputRating = ({type, subType = null, required = false, result}) =>
 
     return (
         <View style={styles.container}>
-            <Text style={styles.rateTitle}>{Translator(state.lang, "rate")}</Text>
+            <Text style={styles.rateTitle}>{Translator(state.lang, title)}</Text>
             <RadioButton.Group onValueChange={newValue => setChecked(newValue)} value={checked}>
                 {
                     rating.map(item => <View style={styles.radioBtnBlock} key={item.point}>
@@ -35,6 +35,11 @@ export const InputRating = ({type, subType = null, required = false, result}) =>
 const styles = StyleSheet.create({
     container: {
         padding: 5,
+        marginVertical: 5,
+        borderStyle: "solid",
+        borderWidth: 1,
+        borderRadius: 20,
+        borderColor: "#acacac"
     },
     radioBtnBlock: {
         flexDirection: "row",
@@ -46,5 +51,6 @@ const styles = StyleSheet.create({
     rateTitle: {
         fontSize: 20,
         textAlign: "center",
+        marginBottom: 5,
     }
 })

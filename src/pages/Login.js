@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import { Card } from 'react-native-elements';
 import {Translator} from "../utils/js/main";
@@ -12,6 +12,10 @@ export const LoginScreen = ({navigation}) => {
     const [password, setPassword] = React.useState('');
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (state.userID) navigation.navigate(patch.HOME);
+    },[state])
 
     const handleLogin = () => {
         postLogin({
