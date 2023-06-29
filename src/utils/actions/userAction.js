@@ -1,4 +1,13 @@
-import {CHANGE_LANG, IS_LOGIN, NAVIGATE, SET_ADD_PHONE, SET_SEARCH_DATA, USER_ID} from "../const/types";
+import {
+    CHANGE_LANG,
+    EDIT_PHONES,
+    IS_LOGIN,
+    NAVIGATE,
+    SET_ADD_PHONE,
+    SET_ADD_PHONES,
+    SET_SEARCH_DATA,
+    USER_ID
+} from "../const/types";
 
 export const changeLang = lang => (
     {
@@ -17,6 +26,20 @@ export const setSearchData = data => (
 export const setAddPhone = data => (
     {
         type: SET_ADD_PHONE,
+        payload: data,
+    }
+);
+
+export const setAddPhones = data => (
+    {
+        type: SET_ADD_PHONES,
+        payload: data,
+    }
+);
+
+export const editPhones = data => (
+    {
+        type: EDIT_PHONES,
         payload: data,
     }
 );

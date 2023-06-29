@@ -64,4 +64,10 @@ export const ua = {
     save: "Зберегти",
     somethingWentWrong: "Щось пішло не так, спробуйте будь ласка пізніше",
     successfullyAdded: "Інформація успішно додана",
+
+    editPhoneNumber: "Редагувати номер телефону",
+    addPhoneNumber: "Додати номер телефону",
+    addedPhoneNumber: "Доданий номер",
+    edit: "Редагувати",
+    add: "Додати",
 }

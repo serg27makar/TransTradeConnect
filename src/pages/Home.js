@@ -15,12 +15,6 @@ export const Home = ({navigation}) => {
     },[state.isLogin])
 
     useEffect(() => {
-        checkLogin().then(res => {
-            if (!res) navigation.navigate(patch.LOGIN)
-        })
-    }, [])
-
-    useEffect(() => {
         if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
             const patch = state.whoAreLookingFor.type
             navigation.navigate(patch)
@@ -37,11 +31,11 @@ export const Home = ({navigation}) => {
     }
 
     const checkOut = () => {
+        dispatch(setSearchData(null))
         mobileValidate(true)
     }
 
     const mobileValidate = (check) => {
-        dispatch(setSearchData(null))
         setTimeout(() => {
             const numLength = number.length;
             const reg = /^\d+$/;

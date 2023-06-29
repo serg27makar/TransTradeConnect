@@ -42,6 +42,9 @@ export const LoginScreen = ({navigation}) => {
                     value={phoneNumber}
                     onChangeText={setPhoneNumber}
                     style={styles.input}
+                    keyboardType="phone-pad"
+                    dataDetectorTypes="phoneNumber"
+                    textContentType="telephoneNumber"
                 />
                 <TextInput
                     placeholder={Translator(state.lang, "Password")}
