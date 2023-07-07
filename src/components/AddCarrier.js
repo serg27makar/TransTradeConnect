@@ -27,7 +27,9 @@ export const AddCarrier = () => {
             phone: state.addPhone,
             name: userName,
             ratingPoint: pointResult,
-            investigatorId: state.userID
+            investigatorId: state.userID,
+            date: new Date(),
+            additionalNumbers: state.addPhones
         }
         postUserInfo(User, res => {
             if (res) {

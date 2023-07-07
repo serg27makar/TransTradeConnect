@@ -33,7 +33,9 @@ export const AddTrader = () => {
             calcRatingPoint: calcPointResult,
             infoRatingPoint: infoPointResult,
             downtimeRatingPoint: downtimePointResult,
-            investigatorId: state.userID
+            investigatorId: state.userID,
+            date: new Date(),
+            additionalNumbers: state.addPhones
         }
         postUserInfo(User, res => {
             if (res) {

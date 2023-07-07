@@ -26,7 +26,6 @@ export const postLogin = (user, callback) => {
 };
 
 export const postUserInfo = (user, callback) => {
-    console.log(user)
     apiService.post(`/users/addUserInfo`, user).then(async res => {
         if (res && res.data && res.data.insertedId) {
             callback(true)
