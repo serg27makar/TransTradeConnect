@@ -41,7 +41,7 @@ export const Trader = () => {
         const calc = totalResult(whoAreLookingFor.Calculation);
         const info = totalResult(whoAreLookingFor.InformativenessUnloading);
         const down = totalResult(whoAreLookingFor.Downtime);
-        setTotalPeople(totalCount)
+        setTotalPeople(Math.round(totalCount / 3))
         setTotalCalcPeople(calc.totalCount)
         setTotalInfoPeople(info.totalCount)
         setTotalDownPeople(down.totalCount)
