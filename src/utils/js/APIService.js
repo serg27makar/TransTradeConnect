@@ -34,3 +34,13 @@ export const postUserInfo = (user, callback) => {
         }
     })
 }
+
+export const getUserInfo = (phone, callback) => {
+    apiService.post(`/users/getUserInfo`, phone).then(async res => {
+        if (res && res.data) {
+            callback(res.data)
+        } else {
+            callback(false)
+        }
+    })
+}

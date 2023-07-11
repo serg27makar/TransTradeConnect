@@ -70,4 +70,6 @@ export const ua = {
     addedPhoneNumber: "Доданий номер",
     edit: "Редагувати",
     add: "Додати",
+
+    NoOneWasFound: "За цим номером нікого не знайшли",
 }

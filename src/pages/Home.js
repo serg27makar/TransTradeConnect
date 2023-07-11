@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
-import {checkLogin, findByPhone, Translator} from "../utils/js/main";
+import {Translator} from "../utils/js/main";
 import {setAddPhone, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
+import {getUserInfo} from "../utils/js/APIService";
 
 export const Home = ({navigation}) => {
     const [number, onChangeNumber] = useState('');
@@ -43,10 +44,13 @@ export const Home = ({navigation}) => {
                 Alert.alert(Translator(state.lang, "NotPhoneNumber"))
             } else {
                 if (check) {
-                    const res = findByPhone(number)
-                    if (res) {
-                        dispatch(setSearchData(res))
-                    }
+                    getUserInfo({Phone: number}, res => {
+                        if (res) {
+                            dispatch(setSearchData(res))
+                        } else {
+                            Alert.alert(Translator(state.lang, "NoOneWasFound"))
+                        }
+                    })
                 } else {
                     dispatch(setAddPhone(number))
                 }
