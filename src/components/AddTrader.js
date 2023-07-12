@@ -22,6 +22,10 @@ export const AddTrader = () => {
         setPointError(false);
     }, [calcPointResult, infoPointResult, downtimePointResult, userName])
 
+    useEffect(() => {
+        if (state.editClient) setUserName(state.editClient.name);
+    },[])
+
     const dataSave = () => {
         setNameError(!userName)
         setPointError((!calcPointResult && !infoPointResult && !downtimePointResult))

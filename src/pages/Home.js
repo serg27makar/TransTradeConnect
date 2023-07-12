@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {Translator} from "../utils/js/main";
-import {setAddPhone, setSearchData} from "../utils/actions/userAction";
+import {clearPhones, setAddPhone, setEditClient, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
 import {getUserInfo} from "../utils/js/APIService";
 
@@ -52,7 +52,15 @@ export const Home = ({navigation}) => {
                         }
                     })
                 } else {
-                    dispatch(setAddPhone(number))
+                    getUserInfo({Phone: number}, res => {
+                        if (res) {
+                            dispatch(clearPhones())
+                            dispatch(setEditClient(res))
+                            dispatch(setAddPhone(number))
+                        } else {
+                            dispatch(setAddPhone(number))
+                        }
+                    })
                 }
             }
         }, 100);

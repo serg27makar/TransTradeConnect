@@ -18,6 +18,10 @@ export const AddCarrier = () => {
         setPointError(false);
     }, [pointResult, userName])
 
+    useEffect(() => {
+        if (state.editClient) setUserName(state.editClient.name);
+    },[])
+
     const dataSave = () => {
         setNameError(!userName)
         setPointError(!pointResult)

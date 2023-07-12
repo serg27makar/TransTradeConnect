@@ -33,7 +33,16 @@ export const AddUser = ({navigation}) => {
     useEffect(() => {
         if (!state.addPhone) navigation.navigate(patch.HOME)
         setShowModal(false);
+        if (state.editClient) fillClient();
     }, [])
+
+    const fillClient = () => {
+        setValue(state.editClient.type)
+        state.editClient.phones.map(item => {
+            if (Number(item.phone) !== Number(state.addPhone))
+                dispatch(setAddPhones(item.phone))
+        })
+    }
 
     const editPhone = (index = 0) => {
         setPhoneIndex(index)

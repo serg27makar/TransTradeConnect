@@ -1,5 +1,5 @@
 import {
-    CHANGE_LANG,
+    CHANGE_LANG, CLEAR_PHONES, EDIT_CLIENT,
     EDIT_PHONES,
     IS_LOGIN,
     NAVIGATE,
@@ -14,6 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const initialState = {
     lang: langs.UA,
     whoAreLookingFor: null,
+    editClient: null,
     isLogin: false,
     userID: AsyncStorage.getItem("UserId"),
     addPhone: "",
@@ -33,6 +34,8 @@ export const userReducer = (state = initialState, action) => {
             const addPhones = state.addPhones;
             addPhones.push(action.payload)
             return {...state, addPhones}
+        case CLEAR_PHONES:
+            return {...state, addPhones: []}
         case IS_LOGIN:
             return {...state, isLogin: action.payload}
         case EDIT_PHONES:
@@ -43,6 +46,8 @@ export const userReducer = (state = initialState, action) => {
             return {...state, userID: action.payload}
         case NAVIGATE:
             return {...state, pathname: action.payload}
+        case EDIT_CLIENT:
+            return {...state, editClient: action.payload}
         default:
             return state
     }

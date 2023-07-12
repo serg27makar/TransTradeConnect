@@ -1,5 +1,5 @@
 import {
-    CHANGE_LANG,
+    CHANGE_LANG, CLEAR_PHONES, EDIT_CLIENT,
     EDIT_PHONES,
     IS_LOGIN,
     NAVIGATE,
@@ -62,5 +62,18 @@ export const setNavigate = data => (
     {
         type: NAVIGATE,
         payload: data,
+    }
+);
+
+export const setEditClient = data => (
+    {
+        type: EDIT_CLIENT,
+        payload: data,
+    }
+);
+
+export const clearPhones = () => (
+    {
+        type: CLEAR_PHONES,
     }
 );
