@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {userType} from "../utils/const/const";
 import {InputRating} from "./InputRating";
-import {postUserInfo} from "../utils/js/APIService";
+import {addUserInfo, editUserInfo} from "../utils/js/APIService";
 
 export const AddTrader = () => {
     const state = useSelector(state => state.users);
@@ -30,7 +30,7 @@ export const AddTrader = () => {
         setNameError(!userName)
         setPointError((!calcPointResult && !infoPointResult && !downtimePointResult))
         if (!userName || (!calcPointResult && !infoPointResult && !downtimePointResult)) return;
-        const User = {
+        let User = {
             type: userType.TRADER,
             phone: state.addPhone,
             name: userName,
@@ -41,13 +41,24 @@ export const AddTrader = () => {
             date: new Date(),
             additionalNumbers: state.addPhones
         }
-        postUserInfo(User, res => {
-            if (res) {
-                Alert.alert(Translator(state.lang, "successfullyAdded"))
-            } else {
-                Alert.alert(Translator(state.lang, "somethingWentWrong"))
-            }
-        })
+        if (state.editClient) {
+            User = {...User, id: state.editClient._id}
+            editUserInfo(User, res => {
+                if (res) {
+                    Alert.alert(Translator(state.lang, "successfullyAdded"))
+                } else {
+                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
+                }
+            })
+        } else {
+            addUserInfo(User, res => {
+                if (res) {
+                    Alert.alert(Translator(state.lang, "successfullyAdded"))
+                } else {
+                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
+                }
+            })
+        }
     }
 
     return (

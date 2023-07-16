@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {userType} from "../utils/const/const";
 import {InputRating} from "./InputRating";
-import {postUserInfo} from "../utils/js/APIService";
+import {addUserInfo, editUserInfo} from "../utils/js/APIService";
 
 export const AddCarrier = () => {
     const state = useSelector(state => state.users);
@@ -26,7 +26,7 @@ export const AddCarrier = () => {
         setNameError(!userName)
         setPointError(!pointResult)
         if (!userName || !pointResult) return;
-        const User = {
+        let User = {
             type: userType.CARRIER,
             phone: state.addPhone,
             name: userName,
@@ -35,13 +35,24 @@ export const AddCarrier = () => {
             date: new Date(),
             additionalNumbers: state.addPhones
         }
-        postUserInfo(User, res => {
-            if (res) {
-                Alert.alert(Translator(state.lang, "successfullyAdded"))
-            } else {
-                Alert.alert(Translator(state.lang, "somethingWentWrong"))
-            }
-        })
+        if (state.editClient) {
+            User = {...User, id: state.editClient._id}
+            editUserInfo(User, res => {
+                if (res) {
+                    Alert.alert(Translator(state.lang, "successfullyAdded"))
+                } else {
+                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
+                }
+            })
+        } else {
+            addUserInfo(User, res => {
+                if (res) {
+                    Alert.alert(Translator(state.lang, "successfullyAdded"))
+                } else {
+                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
+                }
+            })
+        }
     }
 
     return (
