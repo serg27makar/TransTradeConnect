@@ -19,7 +19,6 @@ export const RegistrationScreen = ({navigation}) => {
             Password: password
         }, res => {
             if (res) {
-                navigation.navigate(patch.HOME)
                 dispatch(setIsLogin(true));
                 dispatch(setUserId(res));
             }

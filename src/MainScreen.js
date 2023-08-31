@@ -21,57 +21,66 @@ export const MainScreen = () => {
         <View style={styles.container}>
             <Navbar/>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={state.isLogin ? patch.HOME : patch.LOGIN}>
-                    <Stack.Screen
-                        name={patch.HOME}
-                        component={Home}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.ADD_USER}
-                        component={AddUser}
-                        options={{
-                            headerShown: false,
-                            headerTitle: ""
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.DISPATCHER}
-                        component={Dispatcher}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.TRADER}
-                        component={Trader}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.CARRIER}
-                        component={Dispatcher}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.LOGIN}
-                        component={LoginScreen}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
-                    <Stack.Screen
-                        name={patch.REGISTRATION}
-                        component={RegistrationScreen}
-                        options={{
-                            headerShown: false
-                        }}
-                    />
+                <Stack.Navigator>
+                    {
+                        state.isLogin ? (
+                            <>
+                                <Stack.Screen
+                                    name={patch.HOME}
+                                    component={Home}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.ADD_USER}
+                                    component={AddUser}
+                                    options={{
+                                        headerShown: false,
+                                        headerTitle: ""
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.DISPATCHER}
+                                    component={Dispatcher}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.TRADER}
+                                    component={Trader}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.CARRIER}
+                                    component={Dispatcher}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <Stack.Screen
+                                    name={patch.LOGIN}
+                                    component={LoginScreen}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.REGISTRATION}
+                                    component={RegistrationScreen}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                            </>
+                        )
+                    }
                 </Stack.Navigator>
             </NavigationContainer>
         </View>

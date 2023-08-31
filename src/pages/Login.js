@@ -13,17 +13,12 @@ export const LoginScreen = ({navigation}) => {
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (state.userID) navigation.navigate(patch.HOME);
-    },[state])
-
     const handleLogin = () => {
         postLogin({
             Phone: phoneNumber,
             Password: password
         }, res => {
             if (res) {
-                navigation.navigate(patch.HOME)
                 dispatch(setIsLogin(true));
                 dispatch(setUserId(res));
             }

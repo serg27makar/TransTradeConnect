@@ -12,10 +12,6 @@ export const Home = ({navigation}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-       if (!state.isLogin)  navigation.navigate(patch.LOGIN)
-    },[state.isLogin])
-
-    useEffect(() => {
         if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
             const patch = state.whoAreLookingFor.type
             navigation.navigate(patch)
@@ -28,6 +24,7 @@ export const Home = ({navigation}) => {
 
     const toAdd = () => {
         dispatch(setAddPhone(""))
+        dispatch(setEditClient(null))
         mobileValidate(false)
     }
 
