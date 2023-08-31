@@ -1,13 +1,16 @@
 import {Alert, Button, StyleSheet, Text, TextInput, View} from "react-native";
 import {Translator} from "../utils/js/main";
 import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import {userType} from "../utils/const/const";
+import {useDispatch, useSelector} from "react-redux";
+import {patch, userType} from "../utils/const/const";
 import {InputRating} from "./InputRating";
-import {addUserInfo, editUserInfo} from "../utils/js/APIService";
+import {addUserInfo, editUserInfo, getUserInfo} from "../utils/js/APIService";
+import {setSearchData} from "../utils/actions/userAction";
 
-export const AddCarrier = () => {
+export const AddCarrier = ({navigation}) => {
     const state = useSelector(state => state.users);
+    const dispatch = useDispatch();
+
     const [userName, setUserName] = useState("");
     const [nameError, setNameError] = useState(false);
     const [pointError, setPointError] = useState(false);
@@ -40,6 +43,13 @@ export const AddCarrier = () => {
             editUserInfo(User, res => {
                 if (res) {
                     Alert.alert(Translator(state.lang, "successfullyAdded"))
+                    getUserInfo({Phone: state.addPhone}, res => {
+                        if (res) {
+                            dispatch(setSearchData(res))
+                        } else {
+                            navigation.navigate(patch.HOME)
+                        }
+                    })
                 } else {
                     Alert.alert(Translator(state.lang, "somethingWentWrong"))
                 }
