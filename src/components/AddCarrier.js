@@ -1,15 +1,14 @@
-import {Alert, Button, StyleSheet, Text, TextInput, View} from "react-native";
+import {Button, StyleSheet, Text, TextInput, View} from "react-native";
 import {Translator} from "../utils/js/main";
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {patch, userType} from "../utils/const/const";
+import {useSelector} from "react-redux";
+import {userType} from "../utils/const/const";
 import {InputRating} from "./InputRating";
-import {addUserInfo, editUserInfo, getUserInfo} from "../utils/js/APIService";
-import {setSearchData} from "../utils/actions/userAction";
+import useDataUser from "../hooks/saveDataUser";
 
-export const AddCarrier = ({navigation}) => {
+export const AddCarrier = () => {
     const state = useSelector(state => state.users);
-    const dispatch = useDispatch();
+    const saveDataUser = useDataUser()
 
     const [userName, setUserName] = useState("");
     const [nameError, setNameError] = useState(false);
@@ -38,31 +37,7 @@ export const AddCarrier = ({navigation}) => {
             date: new Date(),
             additionalNumbers: state.addPhones
         }
-        if (state.editClient) {
-            User = {...User, id: state.editClient._id}
-            editUserInfo(User, res => {
-                if (res) {
-                    Alert.alert(Translator(state.lang, "successfullyAdded"))
-                    getUserInfo({Phone: state.addPhone}, res => {
-                        if (res) {
-                            dispatch(setSearchData(res))
-                        } else {
-                            navigation.navigate(patch.HOME)
-                        }
-                    })
-                } else {
-                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
-                }
-            })
-        } else {
-            addUserInfo(User, res => {
-                if (res) {
-                    Alert.alert(Translator(state.lang, "successfullyAdded"))
-                } else {
-                    Alert.alert(Translator(state.lang, "somethingWentWrong"))
-                }
-            })
-        }
+        saveDataUser(User)
     }
 
     return (

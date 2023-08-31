@@ -1,7 +1,6 @@
 import {langs, userType} from "../const/const";
 import {ua} from "../../assets/langs/ua";
 import {ru} from "../../assets/langs/ru";
-import {data} from "../../assets/mok/data.js"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Translator = (lang, val) => {
@@ -15,10 +14,6 @@ export const Translator = (lang, val) => {
             break
     }
     return out
-}
-
-export const findByPhone = (val) => {
-    return data.filter(i => i.phone === val)[0];
 }
 
 export const totalResult = (ratingArr) => {
