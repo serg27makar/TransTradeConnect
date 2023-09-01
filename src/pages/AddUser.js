@@ -9,7 +9,7 @@ import {AddTrader} from "../components/AddTrader";
 import {AddCarrier} from "../components/AddCarrier";
 import { Entypo, MaterialIcons  } from '@expo/vector-icons';
 import {ModalPhone} from "../components/ModalPhone";
-import {editPhones, setAddPhone, setAddPhones} from "../utils/actions/userAction";
+import {clearPhones, editPhones, setAddPhone, setAddPhones} from "../utils/actions/userAction";
 
 export const AddUser = ({navigation}) => {
     const state = useSelector(state => state.users);
@@ -38,6 +38,7 @@ export const AddUser = ({navigation}) => {
 
     const fillClient = () => {
         setValue(state.editClient.type)
+        dispatch(clearPhones())
         state.editClient.phones.map(item => {
             if (Number(item.phone) !== Number(state.addPhone))
                 dispatch(setAddPhones(item.phone))
@@ -81,6 +82,10 @@ export const AddUser = ({navigation}) => {
         }
     }
 
+    const checkIsAddedNumber = (number) => {
+        return !state.editClient.phones.filter(i => i.phone === number)[0]
+    }
+
     return (
         <View>
             <ModalPhone
@@ -108,9 +113,13 @@ export const AddUser = ({navigation}) => {
                     <Text style={styles.headerPhone}>
                         {Translator(state.lang, "byNumber") + ": " + state.addPhone}
                     </Text>
-                    <TouchableOpacity style={styles.imageBtn} onPress={() => editPhone()}>
-                        <Entypo name="edit" size={24} color="white" />
-                    </TouchableOpacity>
+                    {
+                        !state.editClient._id ?
+                            <TouchableOpacity style={styles.imageBtn} onPress={() => editPhone()}>
+                                <Entypo name="edit" size={24} color="white" />
+                            </TouchableOpacity> : null
+                    }
+
                     <TouchableOpacity style={styles.imageBtn} onPress={addPhone}>
                         <MaterialIcons name="add-call" size={24} color="white" />
                     </TouchableOpacity>
@@ -122,9 +131,12 @@ export const AddUser = ({navigation}) => {
                                 <Text style={styles.headerPhone}>
                                     {Translator(state.lang, "addedPhoneNumber") + ": " + item}
                                 </Text>
-                                <TouchableOpacity style={styles.imageBtn} onPress={() => editPhone(index + 1)}>
-                                    <Entypo name="edit" size={24} color="white" />
-                                </TouchableOpacity>
+                                {
+                                    checkIsAddedNumber(item) ?
+                                        <TouchableOpacity style={styles.imageBtn} onPress={() => editPhone(index + 1)}>
+                                            <Entypo name="edit" size={24} color="white" />
+                                        </TouchableOpacity> : null
+                                }
                             </View>
                         )
                     }) : null
