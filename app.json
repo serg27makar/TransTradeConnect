@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/favicon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.sergmak.TransTradeConnect"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "293daecd-d9b6-4be2-a2e9-386b238ea0d3"
+      }
     }
   }
 }
