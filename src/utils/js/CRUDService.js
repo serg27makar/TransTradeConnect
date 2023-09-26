@@ -3,15 +3,16 @@ import axios from 'axios'
 const axiosIns = axios.create({})
 
 const catchError = (error) => {
-    console.log("---", error)
+    console.log("-+-", error)
+    return error
 }
 
-const webServer = "http://localhost:3001";
+const prodServer = "http://ec2-3-65-45-194.eu-central-1.compute.amazonaws.com:80";
 const homeWiFiServer = "http://192.168.0.116:3001";
 const workWiFiServer = "http://192.168.0.127:3001";
 
 export default function CRUDService() {
-    this.APIUrl = process.env.NODE_ENV === "development" ? homeWiFiServer : "";
+    this.APIUrl = prodServer;
     this.get = function (path, signal = null) {
         return this.request("GET", path, null, signal)
             .catch(error => catchError(error))
