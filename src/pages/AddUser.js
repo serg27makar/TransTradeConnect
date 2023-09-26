@@ -114,7 +114,7 @@ export const AddUser = ({navigation}) => {
                         {Translator(state.lang, "byNumber") + ": " + state.addPhone}
                     </Text>
                     {
-                        !state.editClient._id ?
+                        !state.editClient || (state.editClient && !state.editClient._id) ?
                             <TouchableOpacity style={styles.imageBtn} onPress={() => editPhone()}>
                                 <Entypo name="edit" size={24} color="white" />
                             </TouchableOpacity> : null
