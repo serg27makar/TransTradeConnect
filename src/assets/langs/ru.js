@@ -10,6 +10,7 @@ export const ru = {
     Login: "Вход",
 
     NotPhoneNumber: "Это не похоже на номер телефона",
+    PhoneToExist: "Этот номер уже добавлен",
     TypePhoneNumber: "Введите номер телефона",
     EnterPhoneWithoutSpaces: "Введите номер телефона без пробелов и специальных символов",
     CheckOut: "Проверить",

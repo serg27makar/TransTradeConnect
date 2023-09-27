@@ -10,6 +10,7 @@ export const ua = {
     Login: "Вхід",
 
     NotPhoneNumber: "Це не схоже на номер телефону",
+    PhoneToExist: "Цей номер вже є доданий",
     TypePhoneNumber: "Введіть номер телефону",
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
     CheckOut: "Перевірити",

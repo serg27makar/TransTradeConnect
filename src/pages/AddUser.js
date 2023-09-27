@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Translator} from "../utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
@@ -57,6 +57,10 @@ export const AddUser = ({navigation}) => {
         setShowModal(true);
     }
 
+    const checkPhoneToExist = (number) => {
+        return state.addPhones.filter(i => i === number).length
+    }
+
     const addPhone = () => {
         setEditedNumber("");
         setModalTitle("addPhoneNumber");
@@ -67,7 +71,11 @@ export const AddUser = ({navigation}) => {
     const modalResult = (res) => {
         setShowModal(false)
         if (res.title === "addPhoneNumber") {
-            dispatch(setAddPhones(res.number))
+            if (checkPhoneToExist(res.number)) {
+                Alert.alert(Translator(state.lang, "PhoneToExist"))
+            } else {
+                dispatch(setAddPhones(res.number))
+            }
         } else {
             if (phoneIndex) {
                 const data = {
@@ -96,17 +104,20 @@ export const AddUser = ({navigation}) => {
                 phones={state.addPhones}
                 result={modalResult}
             />
-            <View style={styles.dropDown}>
-                <DropDownPicker
-                    open={open}
-                    value={value}
-                    items={items}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    placeholder={Translator(state.lang, "selectUserType")}
-                />
-            </View>
+            {
+                !state.editClient || (state.editClient && !state.editClient._id) ?
+                    <View style={styles.dropDown}>
+                        <DropDownPicker
+                            open={open}
+                            value={value}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+                            placeholder={Translator(state.lang, "selectUserType")}
+                        />
+                    </View> : null
+            }
             <ScrollView style={styles.container}>
                 <Text style={styles.header}>{Translator(state.lang, "aboutWhomYouWantToShare")}</Text>
                 <View style={styles.phoneBlock}>
