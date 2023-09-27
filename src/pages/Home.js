@@ -50,13 +50,13 @@ export const Home = ({navigation}) => {
                     })
                 } else {
                     getUserInfo({Phone: number}, res => {
+                        dispatch(clearPhones())
                         if (res) {
-                            dispatch(clearPhones())
                             dispatch(setEditClient(res))
-                            dispatch(setAddPhone(number))
                         } else {
-                            dispatch(setAddPhone(number))
+                            dispatch(setEditClient(null))
                         }
+                        dispatch(setAddPhone(number))
                     })
                 }
             }

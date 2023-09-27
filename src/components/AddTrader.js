@@ -17,6 +17,7 @@ export const AddTrader = () => {
     const [calcPointResult, setCalcPointResult] = useState(0);
     const [infoPointResult, setInfoPointResult] = useState(0);
     const [downtimePointResult, setDowntimePointResult] = useState(0);
+    const [isReadOnly, setIsReadOnly] = useState(false);
 
     useEffect(() => {
         setNameError(false);
@@ -24,7 +25,12 @@ export const AddTrader = () => {
     }, [calcPointResult, infoPointResult, downtimePointResult, userName])
 
     useEffect(() => {
-        if (state.editClient) setUserName(state.editClient.name);
+        if (state.editClient) {
+            setIsReadOnly(true)
+            setUserName(state.editClient.name)
+        } else {
+            setIsReadOnly(false)
+        }
     },[])
 
     const dataSave = () => {
@@ -50,6 +56,7 @@ export const AddTrader = () => {
             <Text style={styles.title}>{Translator(state.lang, userType.TRADER)}</Text>
             <View style={styles.person}>
                 <TextInput
+                    editable={!isReadOnly}
                     style={[styles.input, nameError ? styles.errorInput : null]}
                     onChangeText={setUserName}
                     value={userName}

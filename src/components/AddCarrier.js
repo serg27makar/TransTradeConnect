@@ -14,6 +14,7 @@ export const AddCarrier = () => {
     const [nameError, setNameError] = useState(false);
     const [pointError, setPointError] = useState(false);
     const [pointResult, setPointResult] = useState(0);
+    const [isReadOnly, setIsReadOnly] = useState(false);
 
     useEffect(() => {
         setNameError(false);
@@ -21,7 +22,12 @@ export const AddCarrier = () => {
     }, [pointResult, userName])
 
     useEffect(() => {
-        if (state.editClient) setUserName(state.editClient.name);
+        if (state.editClient) {
+            setIsReadOnly(true)
+            setUserName(state.editClient.name)
+        } else {
+            setIsReadOnly(false)
+        }
     },[])
 
     const dataSave = () => {
@@ -45,6 +51,7 @@ export const AddCarrier = () => {
             <Text style={styles.title}>{Translator(state.lang, userType.CARRIER)}</Text>
             <View style={styles.person}>
                 <TextInput
+                    editable={!isReadOnly}
                     style={[styles.input, nameError ? styles.errorInput : null]}
                     onChangeText={setUserName}
                     value={userName}

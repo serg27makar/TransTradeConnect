@@ -1,5 +1,5 @@
 export const ua = {
-    logo: "Trans Trade Connect ua",
+    logo: "Trans Trade Connect",
 
     dispatcher: "Диспетчер",
     carrier: "Перевізник",

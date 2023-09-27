@@ -91,6 +91,7 @@ export const AddUser = ({navigation}) => {
     }
 
     const checkIsAddedNumber = (number) => {
+        if (!number || !state.editClient || !state.editClient.phones) return null;
         return !state.editClient.phones.filter(i => i.phone === number)[0]
     }
 
@@ -136,7 +137,7 @@ export const AddUser = ({navigation}) => {
                     </TouchableOpacity>
                 </View>
                 {
-                    state.addPhones.length ? state.addPhones.map((item, index) => {
+                    state.addPhones && state.addPhones.length ? state.addPhones.map((item, index) => {
                         return (
                             <View style={styles.addedPhones} key={index}>
                                 <Text style={styles.headerPhone}>
