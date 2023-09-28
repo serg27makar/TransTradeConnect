@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import { Card } from 'react-native-elements';
 import {Translator} from "../utils/js/main";
@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {patch} from "../utils/const/const";
 import {postLogin} from "../utils/js/APIService";
 import {setIsLogin, setUserId} from "../utils/actions/userAction";
+import {AppSettingsContext} from "../AppSettingsContextProvider";
 
 export const LoginScreen = ({navigation}) => {
     const [phoneNumber, setPhoneNumber] = React.useState('');
@@ -13,12 +14,21 @@ export const LoginScreen = ({navigation}) => {
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
 
+    const { appSettingsInitialized, appSettings, setSettings } = useContext(AppSettingsContext)
+
+    useEffect(() => {
+        if (appSettingsInitialized) {
+            dispatch(setIsLogin(appSettings.UserId && appSettings.UserId.length > 10));
+        }
+    }, [appSettingsInitialized])
+
     const handleLogin = () => {
         postLogin({
             Phone: phoneNumber,
             Password: password
         }, res => {
             if (res) {
+                setSettings("UserId", res)
                 dispatch(setIsLogin(true));
                 dispatch(setUserId(res));
             }

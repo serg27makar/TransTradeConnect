@@ -9,14 +9,13 @@ import {
     USER_ID
 } from "../const/types";
 import {langs} from "../const/const";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialState = {
     lang: langs.UA,
     whoAreLookingFor: null,
     editClient: null,
     isLogin: false,
-    userID: AsyncStorage.getItem("UserId"),
+    userID: "",
     addPhone: "",
     addPhones: [],
     pathname: "",

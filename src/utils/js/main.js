@@ -1,7 +1,6 @@
 import {langs, userType} from "../const/const";
 import {ua} from "../../assets/langs/ua";
 import {ru} from "../../assets/langs/ru";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const Translator = (lang, val) => {
     let out = "";
@@ -88,13 +87,4 @@ export const labelNameSwitcher = (type, subType) => {
         case userType.DISPATCHER:
             return "DispatcherRating";
     }
-}
-
-export const checkLogin = async () => {
-    const ID = await AsyncStorage.getItem("UserId").catch(() => false);
-    return !!ID
-}
-
-export const LogOut = () => {
-    AsyncStorage.removeItem("UserId").then(() => {})
 }
