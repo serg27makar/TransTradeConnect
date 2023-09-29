@@ -9,6 +9,7 @@ export const ua = {
     Password: "Введіть пароль",
     Registration: "Реєстрація",
     Login: "Вхід",
+    AuthError: "Не вірні логін або пароль",
 
     NotPhoneNumber: "Це не схоже на номер телефону",
     PhoneToExist: "Цей номер вже є доданий",

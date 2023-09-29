@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { Card } from 'react-native-elements';
 import {generateMachineID, Translator} from "../utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
@@ -36,18 +36,23 @@ export const RegistrationScreen = ({navigation}) => {
             Password: password,
             UserName: userName,
             UserRole: role,
+            UserType: "User",
             DeviceID,
             DateCreated,
         }, res => {
             if (res) {
-                setSettings("UserID", res)
-                setSettings("UserName", userName)
-                setSettings("UserPhone", phoneNumber)
-                setSettings("DeviceID", DeviceID)
-                setSettings("UserRole", role)
-                setSettings("UserType", "User")
-                dispatch(setIsLogin(true));
-                dispatch(setUserId(res));
+                if (res && res.errMsg) {
+                    Alert.alert(Translator(state.lang, res.errMsg))
+                } else {
+                    setSettings("UserID", res)
+                    setSettings("UserName", userName)
+                    setSettings("UserPhone", phoneNumber)
+                    setSettings("DeviceID", DeviceID)
+                    setSettings("UserRole", role)
+                    setSettings("UserType", "User")
+                    dispatch(setIsLogin(true));
+                    dispatch(setUserId(res));
+                }
             }
         })
     }

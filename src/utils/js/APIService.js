@@ -6,6 +6,8 @@ export const postRegister = (user, callback) => {
     apiService.post(`/users/register`, user).then(async res => {
         if (res && res.data && res.data.insertedId) {
             callback(res.data.insertedId)
+        } else if (res && res.data && res.data.errMsg){
+            callback(res.data)
         } else {
             callback(false)
         }
@@ -15,7 +17,9 @@ export const postRegister = (user, callback) => {
 export const postLogin = (user, callback) => {
     apiService.post(`/users/login`, user).then(async res => {
         if (res && res.data && res.data.UserID) {
-            callback(res.data.UserID)
+            callback(res.data)
+        } else if (res && res.data && res.data.errMsg){
+            callback(res.data)
         } else {
             callback(false)
         }

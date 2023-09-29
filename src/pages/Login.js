@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, TextInput, Text, Button, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { Card } from 'react-native-elements';
 import {Translator} from "../utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
@@ -27,8 +27,14 @@ export const LoginScreen = ({navigation}) => {
             Phone: phoneNumber,
             Password: password
         }, res => {
-            if (res) {
-                setSettings("UserId", res)
+            if (res && res.errMsg) {
+                Alert.alert(Translator(state.lang, res.errMsg))
+            } else {
+                setSettings("UserId", res.UserID)
+                setSettings("UserName", res.UserName)
+                setSettings("UserPhone", res.Phone)
+                setSettings("UserRole", res.UserRole)
+                setSettings("UserType", res.UserType)
                 dispatch(setIsLogin(true));
                 dispatch(setUserId(res));
             }
