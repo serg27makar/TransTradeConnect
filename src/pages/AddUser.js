@@ -10,6 +10,7 @@ import {AddCarrier} from "../components/AddCarrier";
 import { Entypo, MaterialIcons  } from '@expo/vector-icons';
 import {ModalPhone} from "../components/ModalPhone";
 import {clearPhones, editPhones, setAddPhone, setAddPhones} from "../utils/actions/userAction";
+import {checkPhoneToExistDB} from "../utils/js/APIService";
 
 export const AddUser = ({navigation}) => {
     const state = useSelector(state => state.users);
@@ -57,8 +58,13 @@ export const AddUser = ({navigation}) => {
         setShowModal(true);
     }
 
-    const checkPhoneToExist = (number) => {
-        return state.addPhones.filter(i => i === number).length
+    const checkPhoneToExist = (number, callback) => {
+        if (state.addPhones.filter(i => i === number).length) {
+            callback(true);
+        }
+        checkPhoneToExistDB(number, res => {
+            callback(res)
+        })
     }
 
     const addPhone = () => {
@@ -68,26 +74,28 @@ export const AddUser = ({navigation}) => {
         setShowModal(true);
     }
 
-    const modalResult = (res) => {
+    const modalResult = async (res) => {
         setShowModal(false)
-        if (res.title === "addPhoneNumber") {
-            if (checkPhoneToExist(res.number)) {
-                Alert.alert(Translator(state.lang, "PhoneToExist"))
-            } else {
-                dispatch(setAddPhones(res.number))
-            }
-        } else {
-            if (phoneIndex) {
-                const data = {
-                    index: phoneIndex - 1,
-                    phone: res.number
+        checkPhoneToExist(res.number, isNumberExist => {
+            if (res.title === "addPhoneNumber") {
+                if (isNumberExist) {
+                    Alert.alert(Translator(state.lang, "PhoneToExist"))
+                } else {
+                    dispatch(setAddPhones(res.number))
                 }
-                dispatch(editPhones(data))
-                setPhoneIndex(0)
             } else {
-                dispatch(setAddPhone(res.number))
+                if (phoneIndex) {
+                    const data = {
+                        index: phoneIndex - 1,
+                        phone: res.number
+                    }
+                    dispatch(editPhones(data))
+                    setPhoneIndex(0)
+                } else {
+                    dispatch(setAddPhone(res.number))
+                }
             }
-        }
+        });
     }
 
     const checkIsAddedNumber = (number) => {

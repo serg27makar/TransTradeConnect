@@ -55,3 +55,13 @@ export const editUserInfo = (user, callback) => {
         }
     })
 }
+
+export const checkPhoneToExistDB = (number, callback) => {
+    apiService.post("/users/checkPhoneToExist", {Phone: number}).then(async res => {
+        if (res && res.data) {
+            callback(res.data)
+        } else {
+            callback(false)
+        }
+    })
+}
