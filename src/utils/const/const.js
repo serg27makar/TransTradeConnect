@@ -17,4 +17,5 @@ export const userType = {
     CARRIER: "carrier",
     TRADER: "trader",
     DISPATCHER: "dispatcher",
+    INCOGNITO: "incognito",
 }

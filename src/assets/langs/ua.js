@@ -4,6 +4,7 @@ export const ua = {
     dispatcher: "Диспетчер",
     carrier: "Перевізник",
     trader: "Трейдер",
+    incognito: "Інкогніто",
 
     Password: "Введіть пароль",
     Registration: "Реєстрація",
@@ -12,6 +13,7 @@ export const ua = {
     NotPhoneNumber: "Це не схоже на номер телефону",
     PhoneToExist: "Цей номер вже є доданий",
     TypePhoneNumber: "Введіть номер телефону",
+    TypeYourName: "Введіть своє ім'я",
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
     CheckOut: "Перевірити",
     ToAdd: "Додати",

@@ -1,11 +1,21 @@
 import {createContext, useEffect, useState} from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const AppSettingsContext = createContext({})
+export const AppSettingsContext = createContext({});
+
+const User = {
+    UserID: "",
+    UserName: "",
+    UserPhone: "",
+    DeviceID: "",
+    UserType: "",
+    UserRole: "",
+    Permissions: [],
+}
 
 export const AppSettingsContextProvider = ({children}) => {
     const [appSettingsInitialized, setAppSettingsInitialized] = useState(false)
-    const [appSettings, setAppSettings] = useState({})
+    const [appSettings, setAppSettings] = useState(User)
 
     useEffect(() => {
         AsyncStorage
