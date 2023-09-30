@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const AppSettingsContext = createContext({});
 
-const User = {
+const UserInit = {
     UserID: "",
     UserName: "",
     UserPhone: "",
@@ -12,10 +12,13 @@ const User = {
     UserRole: "",
     Permissions: [],
 }
+const UserState = {}
 
 export const AppSettingsContextProvider = ({children}) => {
     const [appSettingsInitialized, setAppSettingsInitialized] = useState(false)
-    const [appSettings, setAppSettings] = useState(User)
+    const [appSettings, setAppSettings] = useState(UserState)
+
+    let mergedSettings = appSettings;
 
     useEffect(() => {
         AsyncStorage
@@ -28,14 +31,19 @@ export const AppSettingsContextProvider = ({children}) => {
             })
     }, [])
 
+    useEffect(() => {
+        mergedSettings = appSettings;
+        setAppSettingsInitialized(true)
+    }, [appSettings])
+
     const setSettings = (key, value) => {
-        const mergedSettings = {
-            ...appSettings,
+        mergedSettings = {
+            ...mergedSettings,
             [key]: value
         }
         setAppSettings(mergedSettings)
 
-        AsyncStorage.setItem('appSettings', JSON.stringify(mergedSettings))
+        AsyncStorage.setItem('appSettings', JSON.stringify(mergedSettings)).then(() => {})
     }
 
     return (

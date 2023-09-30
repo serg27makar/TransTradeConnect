@@ -19,7 +19,11 @@ export const Navbar = () => {
 
     const logOut = () => {
         dispatch(setIsLogin(false));
-        setSettings("UserId", null)
+        setSettings("UserID", "")
+        setSettings("UserName", "")
+        setSettings("UserPhone", "")
+        setSettings("UserRole", "")
+        setSettings("UserType", "")
     }
 
     return (

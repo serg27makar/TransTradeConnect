@@ -18,9 +18,9 @@ export const LoginScreen = ({navigation}) => {
 
     useEffect(() => {
         if (appSettingsInitialized) {
-            dispatch(setIsLogin(appSettings.UserId && appSettings.UserId.length > 10));
+            dispatch(setIsLogin(appSettings.UserID && appSettings.UserID.length > 10));
         }
-    }, [appSettingsInitialized])
+    }, [appSettings])
 
     const handleLogin = () => {
         postLogin({
@@ -29,13 +29,12 @@ export const LoginScreen = ({navigation}) => {
         }, res => {
             if (res && res.errMsg) {
                 Alert.alert(Translator(state.lang, res.errMsg))
-            } else {
-                setSettings("UserId", res.UserID)
+            } else if (res && res.UserID) {
+                setSettings("UserID", res.UserID)
                 setSettings("UserName", res.UserName)
                 setSettings("UserPhone", res.Phone)
                 setSettings("UserRole", res.UserRole)
                 setSettings("UserType", res.UserType)
-                dispatch(setIsLogin(true));
                 dispatch(setUserId(res));
             }
         })
