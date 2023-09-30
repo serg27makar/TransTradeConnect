@@ -10,6 +10,7 @@ export const ua = {
     Registration: "Реєстрація",
     Login: "Вхід",
     AuthError: "Не вірні логін або пароль",
+    UseMyNumber: "Не можна впливати на свій рейтинг",
 
     NotPhoneNumber: "Це не схоже на номер телефону",
     PhoneToExist: "Цей номер вже є доданий",

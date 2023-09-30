@@ -1,15 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {Translator} from "../utils/js/main";
 import {clearPhones, setAddPhone, setEditClient, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
 import {getUserInfo} from "../utils/js/APIService";
+import {AppSettingsContext} from "../AppSettingsContextProvider";
 
 export const Home = ({navigation}) => {
     const [number, onChangeNumber] = useState('');
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
+
+    const { appSettings } = useContext(AppSettingsContext)
 
     useEffect(() => {
         if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
@@ -23,14 +26,26 @@ export const Home = ({navigation}) => {
     }, [state.addPhone])
 
     const toAdd = () => {
+        if (isMyNumber()) {
+            Alert.alert(Translator(state.lang, "UseMyNumber"));
+            return;
+        }
         dispatch(setAddPhone(""))
         dispatch(setEditClient(null))
         mobileValidate(false)
     }
 
     const checkOut = () => {
+        if (isMyNumber()) {
+            Alert.alert(Translator(state.lang, "UseMyNumber"));
+            return;
+        }
         dispatch(setSearchData(null))
         mobileValidate(true)
+    }
+
+    const isMyNumber = () => {
+        return appSettings.UserPhone === number;
     }
 
     const mobileValidate = (check) => {

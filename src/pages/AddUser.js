@@ -99,7 +99,7 @@ export const AddUser = ({navigation}) => {
     }
 
     const checkIsAddedNumber = (number) => {
-        if (!number || !state.editClient || !state.editClient.phones) return null;
+        if (!number || !state.editClient || !state.editClient.phones || !state.editClient._id) return true;
         return !state.editClient.phones.filter(i => i.phone === number)[0]
     }
 

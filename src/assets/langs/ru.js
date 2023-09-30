@@ -4,14 +4,18 @@ export const ru = {
     dispatcher: "Диспетчер",
     carrier: "Перевозчик",
     trader: "Трейдер",
+    incognito: "Інкогніто",
 
     Password: "Введите пароль",
     Registration: "Регистрация",
     Login: "Вход",
+    AuthError: "Не верны логин или пароль",
+    UseMyNumber: "Нельзя влиять на свой рейтинг",
 
     NotPhoneNumber: "Это не похоже на номер телефона",
     PhoneToExist: "Этот номер уже добавлен",
     TypePhoneNumber: "Введите номер телефона",
+    TypeYourName: "Введите свое имя",
     EnterPhoneWithoutSpaces: "Введите номер телефона без пробелов и специальных символов",
     CheckOut: "Проверить",
     ToAdd: "Добавить",

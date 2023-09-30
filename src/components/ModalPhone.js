@@ -1,12 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput} from 'react-native';
 import {Translator} from "../utils/js/main";
 import {useSelector} from "react-redux";
+import {AppSettingsContext} from "../AppSettingsContextProvider";
 
 export const ModalPhone = ({visibly, title, btnText, phone, result}) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [number, onChangeNumber] = useState('');
     const state = useSelector(state => state.users);
+
+    const { appSettings } = useContext(AppSettingsContext)
 
     useEffect(() => {
         setModalVisible(visibly)
@@ -25,6 +28,8 @@ export const ModalPhone = ({visibly, title, btnText, phone, result}) => {
         const reg = /^\d+$/;
         if (reg.test(number) === false || numLength !== 10) {
             Alert.alert(Translator(state.lang, "NotPhoneNumber"))
+        } else if (isMyNumber()) {
+            Alert.alert(Translator(state.lang, "UseMyNumber"));
         } else {
             saveChange()
         }
@@ -37,6 +42,10 @@ export const ModalPhone = ({visibly, title, btnText, phone, result}) => {
         }
         result(res)
         setModalVisible(!modalVisible);
+    }
+
+    const isMyNumber = () => {
+        return appSettings.UserPhone === number;
     }
 
     return (
