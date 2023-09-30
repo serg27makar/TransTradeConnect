@@ -46,11 +46,19 @@ export const AppSettingsContextProvider = ({children}) => {
         AsyncStorage.setItem('appSettings', JSON.stringify(mergedSettings)).then(() => {})
     }
 
+    const logOutAsync = () => {
+        AsyncStorage.removeItem('appSettings').then(() => {
+            setAppSettings(UserState);
+            setAppSettingsInitialized(true)
+        })
+    }
+
     return (
         <AppSettingsContext.Provider value={{
             appSettings,
             appSettingsInitialized,
             setSettings,
+            logOutAsync,
         }}>
             {children}
         </AppSettingsContext.Provider>

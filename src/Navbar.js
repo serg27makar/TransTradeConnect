@@ -10,7 +10,7 @@ import {AppSettingsContext} from "./AppSettingsContextProvider";
 export const Navbar = () => {
     const lang = useSelector((state) => state.users.lang);
     const dispatch = useDispatch();
-    const { setSettings } = useContext(AppSettingsContext)
+    const { logOutAsync } = useContext(AppSettingsContext);
 
     const changeLange = () => {
         const nextLang = lang === langs.UA ? langs.RU : langs.UA;
@@ -19,11 +19,7 @@ export const Navbar = () => {
 
     const logOut = () => {
         dispatch(setIsLogin(false));
-        setSettings("UserID", "")
-        setSettings("UserName", "")
-        setSettings("UserPhone", "")
-        setSettings("UserRole", "")
-        setSettings("UserType", "")
+        logOutAsync();
     }
 
     return (
