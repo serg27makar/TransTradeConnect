@@ -1,37 +1,35 @@
 import React, {useContext, useEffect} from "react";
-import {Text, View, StyleSheet, Button, TouchableOpacity} from "react-native";
+import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
-import {langs} from "./utils/const/const";
-import {changeLang, setIsLogin} from "./utils/actions/userAction";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import {patch} from "./utils/const/const";
+import {setIsLogin, setNavigate} from "./utils/actions/userAction";
+import {FontAwesome5} from "@expo/vector-icons";
 import {AppSettingsContext} from "./AppSettingsContextProvider";
 
 export const Navbar = () => {
-    const lang = useSelector((state) => state.users.lang);
+    const state = useSelector((state) => state.users);
     const dispatch = useDispatch();
-    const { logOutAsync, appSettings } = useContext(AppSettingsContext);
+    const { appSettings } = useContext(AppSettingsContext);
 
     useEffect(() => {
         dispatch(setIsLogin(appSettings.UserID && appSettings.UserID.length > 10));
     }, [appSettings])
 
-    const changeLange = () => {
-        const nextLang = lang === langs.UA ? langs.RU : langs.UA;
-        dispatch(changeLang(nextLang))
-    }
-
-    const logOut = () => {
-        logOutAsync();
+    const openProfile = () => {
+        dispatch(setNavigate(patch.PROFILE))
     }
 
     return (
         <View style={styles.navbar}>
-            <Text style={styles.text}>{Translator(lang, "logo")}</Text>
-            <Button style={styles.btn} title={lang} onPress={changeLange}/>
-            <TouchableOpacity  onPress={logOut}>
-                <Ionicons style={styles.exit} name='exit' size={32} color={"white"} />
-            </TouchableOpacity>
+            {
+                state.isLogin ? (
+                    <TouchableOpacity  onPress={openProfile}>
+                        <FontAwesome5 name="home" size={24} color="white" />
+                    </TouchableOpacity>
+                ) : null
+            }
+            <Text style={[styles.text, !state.isLogin ? styles.textFull : styles.textLowe]}>{Translator(state.lang, "logo")}</Text>
         </View>
     )
 }
@@ -39,21 +37,22 @@ export const Navbar = () => {
 const styles = StyleSheet.create({
     navbar: {
         height: 80,
+        width: "100%",
         alignItems: "flex-end",
-        justifyContent: "center",
         backgroundColor: "#3949ab",
         paddingBottom: 10,
+        paddingLeft: 20,
         flexDirection: "row",
     },
     text: {
         color: "white",
         fontSize: 20,
-        marginRight: 20,
+        textAlign: "center",
     },
-    btn: {
-        marginLeft: 20,
+    textFull: {
+        width: "100%"
     },
-    exit: {
-        paddingLeft: 10,
+    textLowe: {
+        width: "80%",
     }
 })

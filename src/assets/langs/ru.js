@@ -23,6 +23,9 @@ export const ru = {
     ChooseYourContact: "Выберите из списка контактов",
     backBtn: "Вернутся назад",
 
+    language: "Язык",
+    exit: "Выход",
+
     TotalRating: "Общий рейтинг доверия",
     MoreDetailedInformation: "Более детально",
 

@@ -11,6 +11,7 @@ import {patch} from "./utils/const/const";
 import {AddUser} from "./pages/AddUser";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {useSelector} from "react-redux";
+import {Profile} from "./pages/Profile";
 
 
 export const MainScreen = () => {
@@ -28,6 +29,13 @@ export const MainScreen = () => {
                                 <Stack.Screen
                                     name={patch.HOME}
                                     component={Home}
+                                    options={{
+                                        headerShown: false
+                                    }}
+                                />
+                                <Stack.Screen
+                                    name={patch.PROFILE}
+                                    component={Profile}
                                     options={{
                                         headerShown: false
                                     }}

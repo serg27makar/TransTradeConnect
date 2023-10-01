@@ -11,6 +11,7 @@ export const patch = {
     DISPATCHER: "dispatcher",
     LOGIN: "login",
     REGISTRATION: "registration",
+    PROFILE: "profile",
 }
 
 export const userType = {

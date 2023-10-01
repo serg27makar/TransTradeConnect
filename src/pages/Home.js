@@ -25,6 +25,10 @@ export const Home = ({navigation}) => {
     }, [state.whoAreLookingFor])
 
     useEffect(() => {
+        if (state.pathname) navigation.navigate(state.pathname)
+    }, [state.pathname])
+
+    useEffect(() => {
         if (state.addPhone) navigation.navigate(patch.ADD_USER)
     }, [state.addPhone])
 

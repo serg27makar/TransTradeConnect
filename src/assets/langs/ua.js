@@ -23,6 +23,9 @@ export const ua = {
     ChooseYourContact: "Виберіть зі списку контактів",
     backBtn: "Повернуться назад",
 
+    language: "Мова",
+    exit: "Вихід",
+
     TotalRating: "Загальний рейтинг довіри",
     MoreDetailedInformation: "Більш детально",
 
