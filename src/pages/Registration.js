@@ -18,6 +18,7 @@ export const RegistrationScreen = ({navigation}) => {
     const [phoneNumber, setPhoneNumber] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [userName, setUserName] = React.useState('');
+    const [nameError, setNameError] = useState(false);
 
     const [open, setOpen] = useState(false);
     const [role, setRole] = useState(null);
@@ -28,7 +29,16 @@ export const RegistrationScreen = ({navigation}) => {
         {label: Translator(state.lang, userType.INCOGNITO), value: userType.INCOGNITO}
     ]);
 
+    useEffect(() => {
+        setNameError(false);
+    }, [userName, phoneNumber, password, role])
+
+
     const handleRegistration = () => {
+        if (!userName || !phoneNumber || !password || !role) {
+            setNameError(true);
+            return;
+        }
         const DeviceID = generateMachineID();
         const DateCreated = new Date();
         postRegister({
@@ -68,11 +78,14 @@ export const RegistrationScreen = ({navigation}) => {
                     placeholder={Translator(state.lang, "TypeYourName")}
                     value={userName}
                     onChangeText={setUserName}
-                    style={styles.input}
+                    style={[styles.input, nameError ? styles.errorInput : null]}
                 />
+                {(!!nameError && !userName) && (
+                    <Text style={styles.errorMsg}>{Translator(state.lang, "fieldRequired")}</Text>
+                )}
                 <View style={styles.dropDown}>
                     <DropDownPicker
-                        style={styles.input}
+                        style={[styles.input, nameError ? styles.errorInput : null]}
                         open={open}
                         value={role}
                         items={items}
@@ -82,6 +95,9 @@ export const RegistrationScreen = ({navigation}) => {
                         placeholder={Translator(state.lang, "selectUserType")}
                     />
                 </View>
+                {(!!nameError && !role) && (
+                    <Text style={styles.errorMsg}>{Translator(state.lang, "fieldRequired")}</Text>
+                )}
                 <TextInput
                     placeholder={Translator(state.lang, "TypePhoneNumber")}
                     value={phoneNumber}
@@ -89,15 +105,21 @@ export const RegistrationScreen = ({navigation}) => {
                     dataDetectorTypes="phoneNumber"
                     textContentType="telephoneNumber"
                     onChangeText={setPhoneNumber}
-                    style={styles.input}
+                    style={[styles.input, nameError ? styles.errorInput : null]}
                 />
+                {(!!nameError && !phoneNumber) && (
+                    <Text style={styles.errorMsg}>{Translator(state.lang, "fieldRequired")}</Text>
+                )}
                 <TextInput
                     placeholder={Translator(state.lang, "Password")}
                     secureTextEntry
                     value={password}
                     onChangeText={setPassword}
-                    style={styles.input}
+                    style={[styles.input, nameError ? styles.errorInput : null]}
                 />
+                {(!!nameError && !password) && (
+                    <Text style={styles.errorMsg}>{Translator(state.lang, "fieldRequired")}</Text>
+                )}
                 <Button title={Translator(state.lang, "Registration")} onPress={handleRegistration} />
                 <TouchableOpacity style={styles.regWrapp} onPress={handleLogin}>
                     <Text style={styles.regText}>{Translator(state.lang, "Login")}</Text>
@@ -128,5 +150,9 @@ const styles = StyleSheet.create({
     },
     dropDown: {
         zIndex: 10,
+    },
+    errorMsg: {
+        color: "red",
+        paddingBottom: 20,
     },
 })
