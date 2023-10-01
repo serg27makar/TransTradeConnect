@@ -16,10 +16,12 @@ export const ua = {
     PhoneToExist: "Цей номер вже є доданий",
     TypePhoneNumber: "Введіть номер телефону",
     TypeYourName: "Введіть своє ім'я",
-    EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів",
+    EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів, або виберіть зі списку контактів",
     CheckOut: "Перевірити",
     ToAdd: "Додати",
     EnterSearchNumber: "Введіть тут пошуковий номер",
+    ChooseYourContact: "Виберіть зі списку контактів",
+    backBtn: "Повернуться назад",
 
     TotalRating: "Загальний рейтинг довіри",
     MoreDetailedInformation: "Більш детально",

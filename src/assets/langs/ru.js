@@ -16,10 +16,12 @@ export const ru = {
     PhoneToExist: "Этот номер уже добавлен",
     TypePhoneNumber: "Введите номер телефона",
     TypeYourName: "Введите свое имя",
-    EnterPhoneWithoutSpaces: "Введите номер телефона без пробелов и специальных символов",
+    EnterPhoneWithoutSpaces: "Введите номер телефона без пробелов и специальных символов или выберите с списка контактов",
     CheckOut: "Проверить",
     ToAdd: "Добавить",
     EnterSearchNumber: "Введите здесь поисковый номер",
+    ChooseYourContact: "Выберите из списка контактов",
+    backBtn: "Вернутся назад",
 
     TotalRating: "Общий рейтинг доверия",
     MoreDetailedInformation: "Более детально",

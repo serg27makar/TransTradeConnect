@@ -6,9 +6,12 @@ import {clearPhones, setAddPhone, setEditClient, setSearchData} from "../utils/a
 import {patch} from "../utils/const/const";
 import {getUserInfo} from "../utils/js/APIService";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
+import { MaterialIcons } from '@expo/vector-icons';
+import {ModalContacts} from "../components/ModalContacts";
 
 export const Home = ({navigation}) => {
     const [number, onChangeNumber] = useState('');
+    const [showModal, setShowModal] = useState(false);
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
 
@@ -48,6 +51,17 @@ export const Home = ({navigation}) => {
         return appSettings.UserPhone === number;
     }
 
+    const getContacts = () => {
+        setShowModal(true)
+    }
+
+    const modalResult = (result = null) => {
+        if (result) {
+            onChangeNumber(result)
+        }
+        setShowModal(false)
+    }
+
     const mobileValidate = (check) => {
         setTimeout(() => {
             const numLength = number.length;
@@ -80,16 +94,25 @@ export const Home = ({navigation}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>{Translator(state.lang, "EnterSearchNumber")}</Text>
-            <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder={Translator(state.lang, "TypePhoneNumber")}
-                keyboardType="phone-pad"
-                dataDetectorTypes="phoneNumber"
-                textContentType="telephoneNumber"
+            <ModalContacts
+                visibly={showModal}
+                close={modalResult}
             />
+            <Text style={styles.label}>{Translator(state.lang, "EnterSearchNumber")}</Text>
+            <View style={styles.inputWrapper}>
+                <TextInput
+                    style={styles.input}
+                    onChangeText={onChangeNumber}
+                    value={number}
+                    placeholder={Translator(state.lang, "TypePhoneNumber")}
+                    keyboardType="phone-pad"
+                    dataDetectorTypes="phoneNumber"
+                    textContentType="telephoneNumber"
+                />
+                <TouchableOpacity  onPress={getContacts}>
+                    <MaterialIcons name="contact-phone" size={40} color="white" />
+                </TouchableOpacity>
+            </View>
             <Text style={styles.warning}>{Translator(state.lang, "EnterPhoneWithoutSpaces")}</Text>
 
             <View style={styles.btnBlock}>
@@ -135,10 +158,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     warning: {
-        height: 35,
+        height: 50,
+        width: "80%",
         marginLeft: 5,
         padding: 10,
         fontSize: 10,
+        textAlign: "center",
     },
     submitButton: {
         backgroundColor: '#7a42f4',
@@ -151,5 +176,10 @@ const styles = StyleSheet.create({
     },
     btnBlock: {
         flexDirection: "row"
+    },
+    inputWrapper: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
     }
 })
