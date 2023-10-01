@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import {Text, View, StyleSheet, Button, TouchableOpacity} from "react-native";
 import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,7 +10,11 @@ import {AppSettingsContext} from "./AppSettingsContextProvider";
 export const Navbar = () => {
     const lang = useSelector((state) => state.users.lang);
     const dispatch = useDispatch();
-    const { logOutAsync } = useContext(AppSettingsContext);
+    const { logOutAsync, appSettings } = useContext(AppSettingsContext);
+
+    useEffect(() => {
+        dispatch(setIsLogin(appSettings.UserID && appSettings.UserID.length > 10));
+    }, [appSettings])
 
     const changeLange = () => {
         const nextLang = lang === langs.UA ? langs.RU : langs.UA;
@@ -18,7 +22,6 @@ export const Navbar = () => {
     }
 
     const logOut = () => {
-        dispatch(setIsLogin(false));
         logOutAsync();
     }
 
