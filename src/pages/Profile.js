@@ -4,8 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {changeLang, setNavigate} from "../utils/actions/userAction";
 import {Translator} from "../utils/js/main";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
-import {Ionicons, FontAwesome} from "@expo/vector-icons";
-import {langs} from "../utils/const/const";
+import {Ionicons, FontAwesome, MaterialIcons} from "@expo/vector-icons";
+import {langs, patch} from "../utils/const/const";
 
 export const Profile = ({navigation}) => {
     const state = useSelector(state => state.users);
@@ -14,8 +14,16 @@ export const Profile = ({navigation}) => {
     const { appSettings, logOutAsync } = useContext(AppSettingsContext)
 
     useEffect(() => {
-        if (state.pathname)   dispatch(setNavigate(""))
+        dispatch(setNavigate(""))
     }, [])
+
+    const goToNewSearch = () => {
+        navigation.navigate(patch.HOME)
+    }
+
+    const goToHistory = () => {
+        navigation.navigate(patch.HISTORY)
+    }
 
     const changeLange = () => {
         const nextLang = state.lang === langs.UA ? langs.RU : langs.UA;
@@ -35,14 +43,26 @@ export const Profile = ({navigation}) => {
             </View>
             <TouchableOpacity
                 style = {styles.submitButton}
+                onPress = {goToNewSearch}>
+                <MaterialIcons style={styles.btnIcon} name="person-search" size={24}/>
+                <Text style = {styles.submitButtonText}>{Translator(state.lang, "newSearch")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style = {styles.submitButton}
+                onPress = {goToHistory}>
+                <FontAwesome style={styles.btnIcon} name="history" size={24}/>
+                <Text style = {styles.submitButtonText}>{Translator(state.lang, "history")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style = {styles.submitButton}
                 onPress = {changeLange}>
-                <FontAwesome style={styles.btnIcon} name="language" size={24} color="white" />
+                <FontAwesome style={styles.btnIcon} name="language" size={24}/>
                 <Text style = {styles.submitButtonText}>{Translator(state.lang, "language")}</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style = {styles.submitButton}
                 onPress = {logOut}>
-                <Ionicons style={styles.btnIcon} name='exit' size={24} color={"white"} />
+                <Ionicons style={styles.btnIcon} name='exit' size={24}/>
                 <Text style = {styles.submitButtonText}>{Translator(state.lang, "exit")}</Text>
             </TouchableOpacity>
         </View>

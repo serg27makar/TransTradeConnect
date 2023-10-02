@@ -23,6 +23,8 @@ export const ua = {
     ChooseYourContact: "Виберіть зі списку контактів",
     backBtn: "Повернуться назад",
 
+    newSearch: "Новий пошук",
+    history: "Історія пошуку",
     language: "Мова",
     exit: "Вихід",
 

@@ -12,6 +12,7 @@ export const patch = {
     LOGIN: "login",
     REGISTRATION: "registration",
     PROFILE: "profile",
+    HISTORY: "history",
 }
 
 export const userType = {

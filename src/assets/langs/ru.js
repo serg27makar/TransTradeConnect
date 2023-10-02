@@ -23,6 +23,8 @@ export const ru = {
     ChooseYourContact: "Выберите из списка контактов",
     backBtn: "Вернутся назад",
 
+    newSearch: "Новый поиск",
+    history: "История поиска",
     language: "Язык",
     exit: "Выход",
 

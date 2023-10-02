@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, TextInput, View, Alert} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {Translator} from "../utils/js/main";
-import {clearPhones, setAddPhone, setEditClient, setSearchData} from "../utils/actions/userAction";
+import {clearPhones, setAddPhone, setEditClient, setNavigate, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
 import {getUserInfo} from "../utils/js/APIService";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
@@ -16,6 +16,10 @@ export const Home = ({navigation}) => {
     const dispatch = useDispatch();
 
     const { appSettings } = useContext(AppSettingsContext)
+
+    useEffect(() => {
+        dispatch(setNavigate(""))
+    }, [])
 
     useEffect(() => {
         if (state.whoAreLookingFor && state.whoAreLookingFor.type) {
@@ -114,7 +118,7 @@ export const Home = ({navigation}) => {
                     textContentType="telephoneNumber"
                 />
                 <TouchableOpacity  onPress={getContacts}>
-                    <MaterialIcons name="contact-phone" size={40} color="white" />
+                    <MaterialIcons name="contact-phone" size={40}/>
                 </TouchableOpacity>
             </View>
             <Text style={styles.warning}>{Translator(state.lang, "EnterPhoneWithoutSpaces")}</Text>
