@@ -46,6 +46,26 @@ export const getUserInfo = (phone, callback) => {
     })
 }
 
+export const addSearchToHistory = (data, callback) => {
+    apiService.post(`/users/addSearchToHistory`, data).then(res => {
+        if (res && res.data) {
+            callback(res.data)
+        } else {
+            callback(false)
+        }
+    })
+}
+
+export const getSearchUsersInfo = (data, callback) => {
+    apiService.post(`/users/getSearchUsersInfo`, data).then(res => {
+        if (res && res.data) {
+            callback(res.data)
+        } else {
+            callback(false)
+        }
+    })
+}
+
 export const editUserInfo = (user, callback) => {
     apiService.post(`/users/editUserInfo`, user).then(async res => {
         if (res && res.data) {

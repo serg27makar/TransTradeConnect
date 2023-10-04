@@ -10,6 +10,7 @@ const catchError = (error) => {
 const prodServer = "http://ec2-3-65-45-194.eu-central-1.compute.amazonaws.com:80";
 const homeWiFiServer = "http://192.168.0.116:3001";
 const workWiFiServer = "http://192.168.0.127:3001";
+const workWiFiServer2 = "http://192.168.1.55:3001";
 
 export default function CRUDService() {
     this.APIUrl = prodServer;

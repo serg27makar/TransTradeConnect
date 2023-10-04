@@ -35,6 +35,7 @@ export const LoginScreen = ({navigation}) => {
                 setSettings("UserPhone", res.Phone)
                 setSettings("UserRole", res.UserRole)
                 setSettings("UserType", res.UserType)
+                setSettings("SearchHistory", res.SearchHistory)
                 dispatch(setUserId(res));
             }
         })

@@ -11,6 +11,7 @@ const UserInit = {
     UserType: "",
     UserRole: "",
     Permissions: [],
+    SearchHistory: [],
 }
 const UserState = {}
 

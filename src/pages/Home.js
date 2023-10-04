@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Translator} from "../utils/js/main";
 import {clearPhones, setAddPhone, setEditClient, setNavigate, setSearchData} from "../utils/actions/userAction";
 import {patch} from "../utils/const/const";
-import {getUserInfo} from "../utils/js/APIService";
+import {addSearchToHistory, getUserInfo} from "../utils/js/APIService";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
 import { MaterialIcons } from '@expo/vector-icons';
 import {ModalContacts} from "../components/ModalContacts";
@@ -15,7 +15,7 @@ export const Home = ({navigation}) => {
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
 
-    const { appSettings } = useContext(AppSettingsContext)
+    const { appSettings, setSettings } = useContext(AppSettingsContext)
 
     useEffect(() => {
         dispatch(setNavigate(""))
@@ -84,6 +84,14 @@ export const Home = ({navigation}) => {
                         } else {
                             Alert.alert(Translator(state.lang, "NoOneWasFound"))
                         }
+                        const searchData = {
+                            phone: number,
+                            date: new Date(),
+                            UserID: appSettings.UserID,
+                        }
+                        addSearchToHistory(searchData, result => {
+                            if (result) setSettings("SearchHistory", [...appSettings.SearchHistory, {phone: number, date: new Date()}])
+                        })
                     })
                 } else {
                     getUserInfo({Phone: number}, res => {

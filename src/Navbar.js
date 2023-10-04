@@ -4,7 +4,7 @@ import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
 import {patch} from "./utils/const/const";
 import {setIsLogin, setNavigate} from "./utils/actions/userAction";
-import {FontAwesome5} from "@expo/vector-icons";
+import {Feather} from "@expo/vector-icons";
 import {AppSettingsContext} from "./AppSettingsContextProvider";
 
 export const Navbar = () => {
@@ -25,7 +25,7 @@ export const Navbar = () => {
             {
                 state.isLogin ? (
                     <TouchableOpacity  onPress={openProfile}>
-                        <FontAwesome5 name="home" size={24} color="white" />
+                        <Feather name="menu" size={24} color="white" />
                     </TouchableOpacity>
                 ) : null
             }

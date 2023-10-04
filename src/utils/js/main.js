@@ -98,3 +98,10 @@ export const generateMachineID = () => {
     }
     return "d_id:" + str;
 }
+
+export const dateFormat = (date) => {
+    if (date) {
+        let output = date.toString().split("T");
+        return output[0] + " / " + output[1].substring(0, 5)
+    }
+}
