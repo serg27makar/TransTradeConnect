@@ -3,11 +3,13 @@ import {StyleSheet, Text, View} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {setNavigate} from "../utils/actions/userAction";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
-import {dateFormat} from "../utils/js/main";
+import {dateFormat, Translator} from "../utils/js/main";
 import {getSearchUsersInfo} from "../utils/js/APIService";
+import {StarRating} from "../components/StarsRating";
 
-export const SearchHistory = ({navigation}) => {
+export const SearchHistory = () => {
     const dispatch = useDispatch();
+    const state = useSelector(state => state.users);
 
     const [searchItems, setSearchItems] = useState([]);
 
@@ -20,29 +22,42 @@ export const SearchHistory = ({navigation}) => {
     useEffect(() => {
         const postData = []
         appSettings.SearchHistory.map(item => {
-            const pd = {
-                phone: item.phone
-            }
+            const pd = { phone: item.phone }
             postData.push(pd)
         })
         getSearchUsersInfo({phones: postData}, res => {
-            if (res) {
-                setSearchItems(res)
-            }
+            if (res) allMatches(res)
         })
     }, [appSettings])
 
-    useEffect(() => {
-        console.log("searchItems", searchItems)
-    }, [searchItems])
+    const allMatches = (data) => {
+        const matches = []
+        appSettings.SearchHistory.map((item, index) => {
+            let obj = {
+                index,
+                phone: item.phone,
+                date: item.date,
+            }
+            data.map(resData => {
+                let isMatch = false;
+                resData.phones.map(p => {
+                    if (!isMatch) isMatch = p.phone === item.phone
+                })
+                if (isMatch) obj = {...obj, ...resData}
+            })
+            matches.push(obj)
+        })
+        console.log(matches)
+        setSearchItems(matches)
+    }
 
     return (
         <View style={styles.container}>
             {
-                appSettings.SearchHistory.map(item => {
+                searchItems.map(item => {
                     return (
                         <View
-                            key={item.phone}
+                            key={item.index}
                             style={styles.card}
                         >
                             <View style={styles.title}>
@@ -53,11 +68,36 @@ export const SearchHistory = ({navigation}) => {
                                     {dateFormat(item.date)}
                                 </Text>
                             </View>
+                            {
+                                item.phones && item.phones.map(i => {
+                                    if (i.phone !== item.phone)
+                                    return (
+                                        <View key={i.phone}>
+                                            <Text>{i.phone}</Text>
+                                        </View>
+                                    )
+                                })
+                            }
+                            <View style={styles.title}>
+                                <Text>
+                                    {item.name}
+                                </Text>
+                                <Text>
+                                    {Translator(state.lang, item.type)}
+                                </Text>
+                            </View>
+                            {/*{*/}
+                            {/*    item._id ?*/}
+                            {/*        <StarRating point={points}*/}
+                            {/*                    rating={rating}*/}
+                            {/*                    label={Translator(state.lang, "TotalRating")}*/}
+                            {/*                    people={totalPeople}*/}
+                            {/*        /> : null*/}
+                            {/*}*/}
                         </View>
                     )
                 })
             }
-
         </View>
     )
 }
@@ -78,4 +118,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between"
     },
+    phone: {
+        flexDirection:'row',
+        flexWrap:'wrap'
+    }
 })
