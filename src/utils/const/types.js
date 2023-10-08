@@ -8,3 +8,4 @@ export const NAVIGATE = "NAVIGATE";
 export const CLEAR_PHONES = "CLEAR_PHONES";
 export const USER_ID = "USER_ID";
 export const EDIT_CLIENT = "EDIT_CLIENT";
+export const TOGGLE_MENU = "TOGGLE_MENU";

@@ -1,13 +1,13 @@
 import React, {useContext, useEffect} from "react";
 import {View, Text, TouchableOpacity, StyleSheet} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
-import {changeLang, setNavigate} from "../utils/actions/userAction";
+import {changeLang, setNavigate, toggleMenu} from "../utils/actions/userAction";
 import {Translator} from "../utils/js/main";
 import {AppSettingsContext} from "../AppSettingsContextProvider";
 import {Ionicons, FontAwesome, MaterialIcons} from "@expo/vector-icons";
 import {langs, patch} from "../utils/const/const";
 
-export const Profile = ({navigation}) => {
+export const Profile = () => {
     const state = useSelector(state => state.users);
     const dispatch = useDispatch();
 
@@ -18,11 +18,13 @@ export const Profile = ({navigation}) => {
     }, [])
 
     const goToNewSearch = () => {
-        navigation.navigate(patch.HOME)
+        dispatch(toggleMenu(false))
+        dispatch(setNavigate(patch.HOME))
     }
 
     const goToHistory = () => {
-        navigation.navigate(patch.HISTORY)
+        dispatch(toggleMenu(false))
+        dispatch(setNavigate(patch.HISTORY))
     }
 
     const changeLange = () => {

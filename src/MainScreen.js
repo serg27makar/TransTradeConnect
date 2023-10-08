@@ -22,6 +22,9 @@ export const MainScreen = () => {
     return (
         <View style={styles.container}>
             <Navbar/>
+            <View style={[styles.menuWrapper, state.isOpen ? styles.menuOpen : styles.menuClose]}>
+                <Profile/>
+            </View>
             <NavigationContainer>
                 <Stack.Navigator>
                     {
@@ -106,5 +109,20 @@ export const MainScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    menuWrapper: {
+        flex: 1,
+        position: "absolute",
+        height: "100%",
+        zIndex: 10,
+        top: 80,
+        backgroundColor: "#7180a0",
+        duration: 10000,
+    },
+    menuOpen: {
+        width: "70%",
+    },
+    menuClose: {
+        width: 0,
     },
 });

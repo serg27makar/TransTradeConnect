@@ -6,6 +6,7 @@ import {
     SET_ADD_PHONE,
     SET_ADD_PHONES,
     SET_SEARCH_DATA,
+    TOGGLE_MENU,
     USER_ID
 } from "../const/types";
 
@@ -77,3 +78,10 @@ export const clearPhones = () => (
         type: CLEAR_PHONES,
     }
 );
+
+export const toggleMenu = data => (
+    {
+        type: TOGGLE_MENU,
+        payload: data,
+    }
+)

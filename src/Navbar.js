@@ -2,14 +2,14 @@ import React, {useContext, useEffect} from "react";
 import {Text, View, StyleSheet, TouchableOpacity} from "react-native";
 import {Translator} from "./utils/js/main";
 import {useDispatch, useSelector} from "react-redux";
-import {patch} from "./utils/const/const";
-import {setIsLogin, setNavigate} from "./utils/actions/userAction";
+import {setIsLogin, toggleMenu} from "./utils/actions/userAction";
 import {Feather} from "@expo/vector-icons";
 import {AppSettingsContext} from "./AppSettingsContextProvider";
 
 export const Navbar = () => {
     const state = useSelector((state) => state.users);
     const dispatch = useDispatch();
+
     const { appSettings } = useContext(AppSettingsContext);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export const Navbar = () => {
     }, [appSettings])
 
     const openProfile = () => {
-        dispatch(setNavigate(patch.PROFILE))
+        dispatch(toggleMenu(!state.isOpen))
     }
 
     return (

@@ -6,6 +6,7 @@ import {
     SET_ADD_PHONE,
     SET_ADD_PHONES,
     SET_SEARCH_DATA,
+    TOGGLE_MENU,
     USER_ID
 } from "../const/types";
 import {langs} from "../const/const";
@@ -15,6 +16,7 @@ const initialState = {
     whoAreLookingFor: null,
     editClient: null,
     isLogin: false,
+    isOpen: false,
     userID: "",
     addPhone: "",
     addPhones: [],
@@ -47,6 +49,8 @@ export const userReducer = (state = initialState, action) => {
             return {...state, pathname: action.payload}
         case EDIT_CLIENT:
             return {...state, editClient: action.payload}
+        case TOGGLE_MENU:
+            return {...state, isOpen: action.payload}
         default:
             return state
     }
