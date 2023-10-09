@@ -19,6 +19,8 @@ export const ru = {
     EnterPhoneWithoutSpaces: "Введите номер телефона без пробелов и специальных символов или выберите с списка контактов",
     CheckOut: "Проверить",
     ToAdd: "Добавить",
+    ToAddRating: "Добавить оценку",
+    RemoveOnHistory: "Удалить с истории",
     EnterSearchNumber: "Введите здесь поисковый номер",
     ChooseYourContact: "Выберите из списка контактов",
     backBtn: "Вернутся назад",

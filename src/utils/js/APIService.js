@@ -56,6 +56,16 @@ export const addSearchToHistory = (data, callback) => {
     })
 }
 
+export const removeItemOnHistory = (data, callback) => {
+    apiService.post(`/users/removeItemOnHistory`, data).then(res => {
+        if (res && res.data) {
+            callback(res.data)
+        } else {
+            callback(false)
+        }
+    })
+}
+
 export const getSearchUsersInfo = (data, callback) => {
     apiService.post(`/users/getSearchUsersInfo`, data).then(res => {
         if (res && res.data) {

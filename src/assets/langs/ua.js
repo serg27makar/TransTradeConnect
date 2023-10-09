@@ -19,6 +19,8 @@ export const ua = {
     EnterPhoneWithoutSpaces: "Введіть номер телефону без пробілів і спеціальних символів, або виберіть зі списку контактів",
     CheckOut: "Перевірити",
     ToAdd: "Додати",
+    ToAddRating: "Додати оцінку",
+    RemoveOnHistory: "Видалити з історії",
     EnterSearchNumber: "Введіть тут пошуковий номер",
     ChooseYourContact: "Виберіть зі списку контактів",
     backBtn: "Повернуться назад",

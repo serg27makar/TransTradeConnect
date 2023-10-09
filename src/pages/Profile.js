@@ -33,6 +33,7 @@ export const Profile = () => {
     }
 
     const logOut = () => {
+        dispatch(toggleMenu(false))
         logOutAsync();
     }
 

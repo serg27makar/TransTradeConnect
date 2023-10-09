@@ -99,9 +99,25 @@ export const generateMachineID = () => {
     return "d_id:" + str;
 }
 
-export const dateFormat = (date) => {
-    if (date) {
-        let output = date.toString().split("T");
-        return output[0] + " / " + output[1].substring(0, 5)
+export const dateFormat = (dateObj) => {
+    if (!dateObj) return null
+    dateObj = new Date(dateObj)
+    let date = dateObj.getDate();
+    if (date < 10) {
+        date = "0" + date;
     }
+    let month = dateObj.getMonth() + 1;
+    if (month < 10) {
+        month = "0" + month;
+    }
+    let year = dateObj.getFullYear();
+    let hours = dateObj.getHours();
+    if (hours < 10) {
+        hours = "0" + hours;
+    }
+    let minutes = dateObj.getMinutes();
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    return year + "/" + month + "/" + date + " " + hours + ":" + minutes;
 }
